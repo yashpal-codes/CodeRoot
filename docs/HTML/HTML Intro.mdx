@@ -1,0 +1,189 @@
+import { FontStyle } from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# HTML : Hyper Text Markup Language.
+
+HTML is used to create web pages, It't like bonds in our body, it is skeleton of web page, while CSS is skin and other part of body.
+
+## Global attributes
+
+- **In HTML all tags supports Global attributes.**
+
+1. **class** : Specify classname, using class attribute we can align classname for tags.
+2. **id** : Specify id of an element.
+3. **lang** : Specify the language code for the content in element.
+4. **style** : Specify the _In-line_ style for an element.
+5. **title** : Specify extra information about an element, used in tooltip.
+6. **hidden** : Make an element hidden or visible
+
+## HTML tags
+
+:::info
+
+- Tags are intentionally started with small case, as in html they are used in same way.
+  :::
+
+### 1. `<!DOCTYPE html>` represents HTML 5 version:
+
+<details>
+  <summary>Toggle for details</summary>- The main or starting tag in **HTML 5**
+  - It is case -insensitive but normally written like above. - Without this tag
+  Browser will render web-page in **quirk** mode, less standard, older
+  specifications.
+</details>
+
+### 2. `<html>` The main tag
+
+- Commonly **lang** attributes is used with this tag.
+
+### 3. `<head>`
+
+- The data of head tag is not displayed in web, it content crucial information for web page like title, metadata, links to page.
+
+- Basic structure of HTML
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My First Web Page</title>
+  </head>
+  <body>
+    <h1>Welcome to HTML</h1>
+    <p>This is a paragraph.</p>
+    <div>
+      <p>Another section in a div.</p>
+    </div>
+  </body>
+</html>
+```
+
+- Tags which are part of head tag
+
+1.  title.
+2.  meta.
+3.  style.
+4.  links.
+5.  script.
+
+### 3.1. `<title>`
+
+- As name suggest it represent title of web page.
+
+### 3.2. `<meta>` Void Tag
+
+Void Tag :: A self closing tag, ` <meta charset = 'utf-8' />`
+
+- For metadata information of webpage.
+
+<FontStyle text="# Attributes of meta tag" heading="h4" color="blue" />
+
+- charset
+- name
+- content
+- http-equiv
+
+<FontStyle text="1. charset:" heading="h4" color="orange" />
+This attributes is used to define the encoding use by browser to decode that charset.
+
+```html
+<meta charset="utf-8" />
+```
+
+<FontStyle text="2. name" heading="h4" color="orange" />
+
+- Name is used to specify the mete data element of meta tag.
+- It has different data element like description, keyword, author, viewport.
+
+        <FontStyle text="2.1. description" heading="h4" color="orange" />
+         - A brief description of the website, this is often used by the browsers to display a snippet of web-site in search results.
+
+         ```html
+         <meta name="description" content="Buy or sell all grocery here" />
+         ```
+        <FontStyle text="2.2. keyword" heading="h4" color="orange" />
+         - A comma separated list of keywords that describe the HTML document, this also used by search engine to index website in search results.
+         - However, it's important to note that most modern search engines (like Google) no longer use the keywords meta tag for ranking purposes because it was frequently abused for keyword stuffing.
+
+        <FontStyle text="2.3. author" heading="h4" color="orange" />
+         - The author of the webpage.
+
+         ```html
+         <meta name="author" content="Madhav" />
+        ```
+
+        <FontStyle text="2.4. viewport" heading="h4" color="orange" />
+         - this attribute is used to control how a web page is displayed on different devices, especially on mobile
+        <br />
+
+        :::note
+
+        Why is it Important?
+                - Without the viewport meta tag, mobile browsers will render the page at a fixed width, causing the content to appear zoomed out or incorrectly scaled.
+                  The viewport tag ensures the page adapts to the width of the device.
+        :::
+
+        ```html
+        <meta name="viewport" content="width=device-width" initial-scale="1.0" />
+        ```
+
+<FontStyle text="3. content" heading="h4" color="orange" />
+
+- It holds the actual content, used with other meta attributes like name & http-equiv attributes.
+- It defines the actual metadata that browsers, search engines, and other services interpret.
+
+<FontStyle text="4. http-equiv" heading="h4" color="orange" />
+
+- It's often used to control browser behavior, refresh pages, or manage content encoding.
+
+```html
+<meta http-equiv="refresh" content="30" />
+```
+
+### 3.3. `<link>` Void Tag
+
+- This tag links other document or page to webpage.
+- we can link CSS stylesheet and other file to webpage.
+
+<FontStyle text="# Link attributes" heading="h4" color="blue" />
+
+<FontStyle text="1. Rel" heading="h4" color="orange" />
+
+- Specify the relationship
+  between current document and linked document.
+
+- **Stylesheet** :: For CSS stylesheet.
+- **Icon** :: For favicon.
+- **Preload** ::
+  The preload attribute in the link tag is used to load critical resources early in the page lifecycle, improving performance by reducing latency. It tells the browser to fetch and cache important assets (like fonts, images, scripts, or stylesheets) before they are needed.
+
+<FontStyle text="2. href" heading="h4" color="orange" />
+
+- Specify the URL to source, source URL is written into this.
+
+<FontStyle text="3. type" heading="h4" color="orange" />
+
+- Specify the media type
+  linked to webpage. - It can be a image, css or image.
+
+<FontStyle text="4. type" crossorigin="h4" color="orange" />
+
+- Specify if the resource can be fetched with CORS request or not.
+
+```html
+<head>
+  <head>
+    <!-- Link to a stylesheet -->
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+
+    <!-- Link to a JavaScript file (less common) -->
+    <link rel="script" href="app.js" type="application/javascript" />
+
+    <!-- Link to a favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Link to an alternate document (PDF) -->
+    <link rel="alternate" href="document.pdf" type="application/pdf" />
+  </head>
+</head>
+```

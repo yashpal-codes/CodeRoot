@@ -1,0 +1,72 @@
+.text-highlight {
+  /* Basic styling */
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  padding: 5px 10px;
+  /* background-color: #333333;  */
+  color: #2b70e6;
+  box-shadow: 2px 4px 8px rgba(59, 140, 227, 0.2);
+  border-radius: 5px;
+  margin: 20px 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.text-highlight:hover {
+  color: #e44e5b;
+}
+.star {
+  padding-right: 10px;
+}
+
+.single-line-divider {
+  display: flex;
+  align-content: center;
+  margin: 20px 0;
+}
+
+.divider {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0 10px;
+  box-shadow: 1px 2px 4px rgba(28, 87, 204, 0.5);
+  margin: auto;
+}
+
+.divider-content {
+  position: relative;
+  background-color: white; /* Matches the background color to "cut" the line */
+  padding: 0 10px; /* Adds space around the text */
+  font-family: "Courier New", Courier, monospace; /* Monospace for code-like appearance */
+  font-size: 14px;
+  color: #327ccc;
+  white-space: no-wrap;
+  font-weight: 500;
+}
+
+.heading1 {
+  font-size: 40px; /* Slightly larger for a more impactful main heading */
+  font-weight: 700; /* A bolder weight for emphasis */
+}
+
+.heading2 {
+  font-size: 32px; /* A bit larger than 28px for better hierarchy */
+  font-weight: 600; /* Strong enough to stand out but not too heavy */
+}
+
+.heading3 {
+  font-size: 26px; /* Increased a bit for balance with the others */
+  font-weight: 500; /* Moderate weight for clarity */
+}
+
+.heading4 {
+  font-size: 22px; /* Slightly larger for readability */
+  font-weight: 400; /* Standard weight for readability */
+}
+
+.heading5 {
+  font-size: 18px; /* Standard size for smaller headings */
+  font-weight: 300; /* Lighter weight for subtext feel */
+}

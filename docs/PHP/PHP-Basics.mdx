@@ -1,0 +1,165 @@
+---
+sidebar_position: 3
+---
+
+# PHP Basics
+
+## Variables in PHP
+
+- Variables in PHP are represented by a dollar sign **$** followed by the name of the variable.
+
+```php
+<?php
+    $name = "John";
+    $age = 25;
+    echo $name;
+    echo $age;
+?>
+```
+
+- **PHP is loosely types langauge, So we can reassign a variable with different type of value.**
+- **PHP is case-sensitive language, so $name and $Name are different.**
+- **Variables names are camelCase in PHP.**
+
+```php
+$name = "Yashpal";
+$name = 31;
+
+// PHP variables are written in camelCase
+$myNameIs = "Yashpal";
+$ageBeforeLastBirthday = 30;
+
+```
+
+---
+
+## Scope and Initialization of variables:
+
+### PHP Variable Scope:
+
+1. Local Variables
+2. Global Variables
+3. Static Variables
+
+#### **Local Variables:**
+
+- A variable declared within a function has a LOCAL SCOPE and can only be accessed within that function.
+
+```php
+<?php
+
+function myTest() {
+    $x = 5; // local scope
+    echo "<p>Variable x inside function is: $x</p>";
+}
+
+myTest();
+// Variable x inside function is: 5
+
+
+echo "<p>Variable x outside function is: $x</p>";
+// using x outside the function will generate an error
+//Notice: Undefined variable: x in /opt/lampp/htdocs/PHPBasics/variables.php on line 10
+```
+
+#### **Global Variables:**
+
+- A variable declared outside a function has a GLOBAL SCOPE and can be accessed from anywhere using 'global' keyword or the '$GLOBALS' array.
+
+- We can access global variable outside of any function or method directly without using global keyword.
+
+- To access them inside a function, we need to use the global keyword.
+
+- **In function, if local and global, have the same name, them local variable has the higher priority**
+
+```php
+$myName = 'Yash';
+
+function print_name() {
+    global $myName;
+    echo $myName;
+    // Print Yash
+}
+
+print_name();
+
+echo $myName;
+// Print Yash, as it is outside of the fuction no need to use global keyword.
+
+function change_name() {
+    $myName = 'Yashpal';
+    echo $myName;
+    // Print Yashpal
+}
+```
+
+_However, In function, if local and global, have the same name, them local variable has the higher priority, This isn't always the case._
+
+```php
+$myName = 'Yash Global Name';
+
+function print_name() {
+    global $myName;
+    $myName = 'Yashpal local name'
+    echo $myName;
+
+    // Print Yashpal local name, as reassign in function override the global variable.
+}
+
+print_name();
+
+function change_name() {
+    $myName = 'Yashpal local name'
+    global $myName;
+    echo $myName;
+
+    // Print Yash Global Name, as after reassign we used global keyword, it overwrite the local variable.
+}
+
+```
+
+#### **Static Variables:**
+
+- In normal, after the function execution, PHP deletes all the variables.
+
+- But if we want to keep the value of a variable after the function execution, we can use the static keyword.
+
+- Static variables only exists in local scope.
+
+```php
+function myTest() {
+    static $x = 0;
+    $y = 0;
+    echo 'x:' $x;
+    echo 'y:' $y;
+    $x++;
+}
+
+myTest(); // x:0 y:0
+myTest(); // x:1 y:0
+myTest(); // x:2 y:0
+
+// Here x is static variable, so it will keep the value after the function execution.
+```
+
+---
+
+### Initialization/Hoisting in PHP:
+
+- In PHP, variables are not hosited, means that they can't be used before declaration
+
+```php
+echo $name;
+$name = 'Yashpal';
+// Notice: Undefined variable: name in /opt/lampp/htdocs/PHPBasics/variables.php on line 1
+```
+
+- **However, Functions are hoisted, we can use function before declaration.**
+
+```php
+echo myName();
+function myName() {
+    return 'Yashpal';
+}
+// Print Yashpal
+```

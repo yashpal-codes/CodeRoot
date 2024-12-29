@@ -1,0 +1,217 @@
+---
+sidebar_position: 3
+---
+
+# Declaring Types in TS
+
+### Union types:
+
+- Union types are a powerful way to express a value that can be one of the several types. We use the vertical bar (|) to separate each type, so 'number | string | boolean' is the type of a value that can be a number, a string, or a boolean.
+
+
+```js
+//Union Types
+function printId(id: number | string) {
+    console.log(id);
+}
+
+printId(101); // OK
+printId("Yash"); // OK
+//Below code will throw an error
+printId({ age:30}); // Error
+```
+
+- **Discriminated Unions**:
+
+
+In this section we'll look at a common pattern TypeScript developers use to structure their code. It's called a 'discriminated union'.
+
+To understand what a discriminated union is, let's first look at the problem it solves.
+
+### The Problem: The Bag Of Optionals
+
+Let's imagine we are modelling a data fetch. We have a `State` type with a `status` property which can be in one of three states: `loading`, `success`, or `error`.
+
+```typescript
+type State = {
+    status: "loading" | "success" | "error";
+};
+```
+
+This is useful, but we also need to capture some extra data. The data coming back from the fetch, or the error message if the fetch fails.
+
+We could add an `error` and `data` property to the `State` type:
+
+```typescript
+type State = {
+    status: "loading" | "success" | "error";
+    error?: string;
+    data?: string;
+};
+```
+
+And let's imagine we have a `renderUI` function that returns a string based on the input.
+
+```typescript
+const renderUI = (state: State) => {
+    if (state.status === "loading") {
+        return "Loading...";
+    }
+
+    if (state.status === "error") {
+        return `Error: ${state.error.toUpperCase()}`; // Red line under state.error
+    }
+
+    if (state.status === "success") {
+        return `Data: ${state.data}`;
+    }
+};
+```
+
+This all looks good, except for the error we're getting on `state.error`. TypeScript is telling us that `state.error` could be `undefined`, and we can't call `toUpperCase` on `undefined`.
+
+This is because we've declared our `State` type in an incorrect way. We've made it so the `error` and `data` properties are _not related to the statuses where they occur_. In other words, it's possible to create types which will never happen in our app:
+
+```typescript
+const state: State = {
+    status: "loading",
+    error: "This is an error", // should not happen on "loading!"
+    data: "This is data", // should not happen on "loading!"
+};
+```
+
+### Solution: Discriminated Unions
+
+```typescript
+type State ={
+    | {
+        status:"Loading"
+    }
+    |{
+        status:"Success";data:string
+    }
+    |{
+        status:"error";error:string
+    }
+}
+```
+
+- This is due to TypeScript's narrowing - it knows that `state.status` is `"error"`, so it knows that `state.error` is a `string` inside of the `if` block.
+
+
+
+* #### Literal Types:
+    TypeScript allow us to create types that are made from javascript primitive values (string,number,boolean), these type are called primitive types.
+
+```js
+    type YesOrNo = "yes" | "no";
+    type StatusCode = 200 | 404 | 500;
+    type TrueOrFalse = true | false;
+```
+
+
+## Type Aliases & Interfaces:
+
+* Type aliases allows to define types with custom name and use them in place of actual type.
+* So in short with aliases and interface we can create re-usable types.
+  
+```js
+//Type Aliases
+type CarYear = number;
+type CarModel = string;
+type Car = {
+    year: CarYear,
+    model: CarModel
+};
+
+const carYear: CarYear = 2001
+const carModel: CarModel = "Corolla"
+const car: Car = {
+    year: carYear,
+    model: carModel
+    };
+```
+
+* Interfaces are similar to aliases but they are only used with objects.
+
+
+```js
+// Try creating a new interface using it below
+interface Rectangle {
+    height: number,
+    width: number
+};
+        
+const rectangle: Rectangle = {
+    height: 20,
+    width: 10
+};
+```
+
+- **Intersections**: we can combine two interfaces or type aliases using ** & ** operator to create a new type.
+
+```js
+interface A { // interface
+    a: number;
+}
+interface B { // interface
+    b: string;
+}
+type C = A & B; // intersection type
+const c: C = { a: 1, b: "hi" };
+```
+
+- ** It's recommended to use interface extends rather than intersection as interface will give error while merging tow incompatible types but intersection will not give error and will merge two types.**
+
+```typescript
+interface A { // interface
+    a: number;
+}
+interface B { // interface
+    b: string;
+}
+interface C extends A,B { // intersection type
+    c: boolean;
+}
+const c: C = { a: 1, b: "hi", c: true };
+``` 
+
+- **DIFFERENCE BETWEEN TYPE ALIASES AND INTERFACES**:
+
+    1. **Type aliases** can represent any type, including primitives, unions, and intersections.
+    2. **Interfaces** can only represent object types.
+    3. Main thing to keep in mind that **Interfaces** are open and **Type aliases** are closed, means we can **extend** interface by re-declaring it second time while we can't do this with type aliases.
+
+```js
+interface Car {
+    model: string;
+}
+// Here we declare car interface again and this will extend or add year type to Car interface.
+interface Car { 
+    year: number;
+}
+
+let carObj: Car = { // This will work fine
+    model: "Corolla",
+    year: 2001
+}
+
+type Bike = {
+    model: string;
+}
+// This will throw an error,as we can do intersection with type aliases but we can't extend it.
+type Bike = { // This will throw an error
+    year: number;
+}
+```
+
+- **Type aliases** are more flexible than interfaces, because they can represent primitives, unions, and intersections. **Type aliases** are also more suitable for describing the shape of any data.
+
+## Left hand typing vs Right hand typing:
+
+Left Hand Typing:
+	We annotate using the colon syntax, the name is of the type we annotate.
+    let deliveryAddress: string[] = []
+
+Right Hand Typing:
+    Type annotation is not explicitly defined and inferred by type script, so here type is derived  by a value assigned to the right side of the equal sign.

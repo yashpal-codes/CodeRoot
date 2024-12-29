@@ -1,0 +1,405 @@
+---
+sidebar_position: 13
+---
+
+import {
+  TextHighlighter,
+  DividerWithText,
+} from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+import accessibility from "./assets/images/accessbility.png";
+import cookeVsCache from "./assets/images/cookieVsCache.png";
+import cookieWorking from "./assets/images/cookieWorking.png";
+import FPTP2 from "./assets/images/FPTP2.png";
+import FPTPCookies from "./assets/images/FPTPCookies.png";
+import phpCookies from "./assets/images/phpCookies.png";
+import Session from "./assets/images/Session.png";
+import typeOfCookies from "./assets/images/typesOfCookies.png";
+
+# Cookies and Sessions in PHP
+
+Cookie is a small piece of data that a server sends to the user's web browser. The browser store it in user device and send it back to with request when user visit the same website again.
+
+Cookie are used to store user information, active session, user preference etc.
+
+When you visit a particular website, some information is saved in your local system so that when you visit the same website again, this website is able to recognize you and show you the results according to your preferences. This saved information is called cookie.
+
+<img
+  alt="cookies"
+  src={phpCookies}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+<br />
+<br />
+<br />
+
+<img
+  alt="cookies"
+  src={cookieWorking}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+### Why use Cookies?
+
+- Lets consider a scenario, where you visit a website and that website default language is not in english and website default mode is dark mode.
+
+- Now you change the language to english and change the mode to light mode.
+
+- If you close the browser and visit the website again, website will display content in default language and in dark mode.
+
+- If we visit same website 10 times in day, we have to change the language and mode 10 times.
+
+- To overcome this, and uniquely remember the user, the server sends the cookies along with the response, and browser stores the cookies.
+
+- **When user visit the website again, browser sends the cookies along with the request, and server can identify the user and display the content in the language and mode user has selected.**
+
+### Difference between Cookies and Cache
+
+<br />
+
+<img
+  alt="cookies"
+  src={cookeVsCache}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+### Cookies are safe to use
+
+- Cookies are safe to use, as they are stored in user's local system and can only be accessed by the server that has set the cookies.
+
+- A cookie cannot be used by any other server as the id saved in teh cookie is unique to the server that has set the cookie.
+
+- In cookie, only the user information is stored, not the password or any other sensitive information.
+
+- Cookies cannot contain viruses or malware.
+
+### Types of Cookies
+
+<img
+  alt="cookies"
+  src={typeOfCookies}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+#### First Party Cookies
+
+- This cookie is set by the website you are visiting.
+
+<img
+  alt="cookies"
+  src={FPTPCookies}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+- As illustrated above, if you visit website a.com and you attempt to access a service from the same domain name a.com, cookies generated will be considered first-party cookies.
+
+- Example: login information, user preferences, etc.
+
+#### Third Party Cookies
+
+- This cookie is set by a domain other than the one you are visiting.
+
+- Whereas, if you visit a website a.com but that page includes content (image, iframe, etc.) from a different domain name b.com, cookies set by b.com will be considered third-party cookies because they come from a different name than in the URL bar: a.com.
+
+- Example: ads, analytics, other sites you visit, like a news site, a hotel site, or a blog you read..
+
+- **Third-party cookies are often used for online advertising and retargeting and user tracking, meaning they can track your browsing habits and serve you ads based on your interests.**
+
+<img alt="cookies" src={FPTP2} style={{ margin: "auto", display: "block" }} />
+<br />
+<img
+  alt="cookies"
+  src={accessibility}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+### Use of Cookies
+
+#### Session management
+
+- Secure interaction between web browser and server.
+- login, auto-fill, shoppiong cart, etc.
+
+#### Personalization
+
+- User preferences, themes, etc.
+
+##### Tracking
+
+- User behavior, analytics, etc.
+- Ad tracking, retargeting, etc.
+
+### Cookie Attributes
+
+1. **Name**: The name of the cookie.
+2. **Value**: The value of the cookie.
+3. **Domain and Path**:
+
+- **Domain**:
+
+  - Domain attribute specifies the domain who can access the cookie.
+  - If the domain attribute is not set, the cookie can only be accessed by the domain that set the cookie.
+  - Example: Domain="google.com"
+
+- **Path**:
+  - Path attribute specifies the URL path for which the cookie is valid.
+  - If the path attribute is not set, the cookie is valid for the entire domain.
+  - If Paht '/'' is set, the cookie is valid for the entire domain.
+  - Example: Path="/docs"
+
+4. **Expires and Max-Age**:
+
+- **Expires**:
+  _ The expires attribute specifies the date and time when the cookie will expire.
+  _ If the expires attribute is not set, the cookie will expire when the browser is closed. \* Example: Expires=Wed, 21 Oct 2021 07:28:00 GMT
+
+  5.**SameSite**:
+
+- The SameSite attribute specifies whether the cookie is sent with cross-site requests.
+- When clicking a link within a webpage, your cookies can be sent to teh new page you are visiting. We can control this behavior using the SameSite attribute.
+
+- SameSite attributes have 3 options:
+  - **SameSite=Strict** : The cookie is only sent if the request originates from the same site, this ensure that the cookie is not sent with request from third-party websites. This ensure hihg security.
+  - **SameSite=Lax** : The cookie is sent with same-site requests and safe cross-site requests, which include top-level navigation (e.g., clicking a link to your site from another site). This is the default value for cookies in most modern browsers.
+    - Example Usage: It's a balanced approach that allows simple cross-site linking but restricts the cookie from being sent with requests initiated by third-party sites, like form submissions from another site.
+  - **SameSite=None** : The cookie is sent with both same-site and cross-site requests. This is used for third-party cookies.
+    - This must be used in conjunction with the Secure attribute, meaning the cookie will only be sent over HTTPS connections.
+    - Example Usage: This is used for third-party cookies, like those used for ads or other tracking services
+
+6. **Secure**:
+
+- The Secure attribute specifies that the cookie should only be sent over a secure HTTPS connection from the client. This is used to ensure that the cookie is always sent over an encrypted connection.
+
+7. **HttpOnly**:
+
+- The HttpOnly attribute specifies that the cookie is not accessible via JavaScript. This is used to prevent cross-site scripting (XSS) attacks.
+
+<TextHighlighter text="So when using SameSite-'None', it is recommended to enable Secure and HttpOnly attributes for security reasons" />
+
+### Cookie Example
+
+In this example, the server includes several cookies for the client to store. In subsequent HTTP requests, the client sends all of the cookies back to the server using the Cookie request header field. The two exceptions are screenmode, which will not be sent after January 1st, 2023, and job, which will only be sent for the next hour.
+
+**Response**
+
+```HTTP
+// Response
+
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length:
+Set-Cookie: items=16
+Set-Cookie: headercolor=blue
+Set-Cookie: footercolor=green
+Set-Cookie: screenmode=dark, Expires=Sun, 1 Jan 2023 12:00:00 GMT
+Set-Cookie: job=111; Max-Age: 3600; Secure; HttpOnly
+
+```
+
+**Request ( after few mins)**
+
+```HTTP
+// Request
+
+GET / HTTP/1.1
+Host: www.example.re
+Cookie: items=16; headercolor=blue; screenmode=dark; job=111
+
+```
+
+**Request (more than an hour later but before January 1st, 2023)**
+
+```HTTP
+// Request, job is not sent as it is expired
+
+GET / HTTP/1.1
+Host: www.example.re
+Cookie: items=16; headercolor=blue; screenmode=dark
+
+```
+
+## Setting a cookie in PHP
+
+- To set a cookie in PHP, we use the setcookie() function.
+
+- setCookie() return true if the cookie is set successfully, otherwise it returns false.
+
+```php
+<?php
+// Set the cookie
+setCookie(
+    name: 'user',
+    value: 1,
+    expires: time() + 3600,
+    domain: 'example.com',
+    path:'/',
+    secure: true,
+    HttpOnly: true,
+    SameSite:'Lax',
+)
+```
+
+### $\_COOKIE
+
+- The $\_COOKIE superglobal variable is used to access the cookie values that are sent by the client.
+
+```php
+
+if (isset($_COOKIE['cookie_name'])) {
+	// process the cookie value
+}
+```
+
+### Deleting a cookie
+
+- To delete a cookie, we set the cookie with an expiration date in the past.
+
+```php
+<?php
+// Set the cookie time in the past
+setCookie(
+    name: 'cookie_name',
+    value: null
+    expires: time() - 3600,
+    domain: 'example.com',
+)
+```
+
+<DividerWithText text="<End of Cookie />" />
+
+## Sessions in PHP
+
+Sessions are used to store user information on the **server** for later use. Unlike cookies, the information is not stored on the client's computer.
+
+Imagine you're visiting a website where you need to log in to see your personal dashboard. Here's how it works with and without sessions:
+
+**Without Sessions**
+
+1. Logging In: You enter your username and password to log in.
+2. Problem: Each time you visit a new page on the site (like your dashboard), the website doesn't remember who you are. This is because each page request is independent, and the server doesn't have any memory due to the nature of HTTP, which doesn't keep track of interactions between requests.
+
+**With Sessions**
+
+1. Logging In: You enter your username and password and submit the form.
+2. Session Creation: The server creates a session for you and stores some information about you, like your user ID. It then sends back a session ID, usually stored in a cookie in your browser.
+3. Accessing the Dashboard:
+   - When you click on your dashboard, your browser automatically sends the session ID back to the server.
+   - The server recognizes you because it has stored your information in the session associated with that session ID.
+   - You can access your dashboard because the server knows you're logged in.
+
+<br />
+
+<img alt="cookies" src={Session} style={{ margin: "auto", display: "block" }} />
+
+- **PHPSESSID** is the default name given by the PHP back-end server that created the session ID.
+
+### Working of Sessions
+
+- When you log in, a session is created with a unique ID (session ID). The session ID will be **sent** to the user’s browser.
+
+- The server will then create a session variable auth_user ( for example ) and store in it the information of the actual logged in user. The session data will be stored in a file on the server side. The name of the file will be the session ID.
+
+- When the user request the dashboard page, the browser will send the cookie that contain the session ID with the request.
+
+- The server receives an incoming request, retrieves the session ID, and searches for the associated session. Once the session is found, the server retrieves the data.
+
+- Finally, the server will need to check the existence the that auth_user session variable. If he found it, the server will give the access to the dashboard page.
+
+<TextHighlighter text="Sessions are often used to store sensitive information such as user credentials and financial data. They are more secure than cookies because the information is stored on the **server-side and not on the client-side." />
+
+### Starting a Session
+
+- To start a session in PHP, we use the **session_start()** function.
+- When the session_Start() runs first time, it create a session id and send it to browser by storing it in cookie nmaes PHPSESSID.
+- If a session already existsm PHP checks PHPSESSID cookie sent by the browserand session_start() will resume the exisiting session by using the session id stored in the cookie.
+- **Since PHP sends the PHPSESSID cookie in the header of the HTTP response, you need to call the session_start() function before any statement that outputs the content to the web browser.**
+- Otherwise, you will get a warning message saying that the header cannot be modified because it is already sent. This is a well-know error message in PHP.
+
+```php
+// Start the session
+session_start();
+```
+
+- By default, PHP stores session data in temporary files on the web server. You can find the location of the temporary files using directive session.save_path in the PHP configuration file.
+
+- The ini_get() function returns the value of the session.save_path directive:
+
+```php
+// Get the session save path
+$sessionSavePath = ini_get('session.save_path');
+echo $sessionSavePath;
+```
+
+### Storing Session Data
+
+- To store session data, we use the **$\_SESSION** superglobal variable.
+
+```php
+//profile.php
+// Store data in the session
+session_start();
+
+$_SESSION['user_id'] = 1;
+$_SESSION['user'] = 'admin';
+#_SESSION['role'] = ['admin', 'editor','administrator'];
+```
+
+- Now we can create a index.php file and access the session data.
+
+```php
+//index.php
+session_start();
+
+echo $_SESSION['user_id']; // Output: 1
+echo $_SESSION['user']; // Output: admin
+```
+
+### Deleting a Session
+
+- Whenever you close the web browser, PHP automatically deletes the session. However, we can use **session_destroy()** to destroy current session data.
+
+- It delete the assiciated data but does not unset the data in $\_SESSION array the session id stored in the cookie.
+
+- To complete remove of session data we need to delete the session id stored in the cookie.
+
+```php
+session_start();
+
+// Deleting cookie
+if(isset($_COOKIE[session_name()])){
+    setCookie(session_name(),null,time()-3600,'/');
+}
+
+// Unset data in $_SESSION array
+$_SESSION = [];
+
+// Destroy the session
+session_destroy();
+
+```
+
+<DividerWithText text="<End of Session />" />
+
+## Difference between Cookies and Sessions
+
+| Cookies                                                                        | Sessions                                                                                        |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| Cookies are stored on the client-side.                                         | Sessions are stored on the server-side.                                                         |
+| Cookies are less secure as they can be tampered with.                          | Sessions are more secure as they are stored on the server-side.                                 |
+| Cookies can store a limited amount of data up to 4KB.                          | Sessions can store a large amount of data.                                                      |
+| Cookies can be disabled by the user.                                           | Sessions cannot be disabled by the user.                                                        |
+| Cookies are used to store user information, preferences, etc.                  | Sessions are used to store sensitive information such as user credentials, financial data, etc. |
+| Cookies are used to track user behavior, analytics, etc.                       | Sessions are used to manage user sessions, login, shopping cart, etc.                           |
+| Cookies store data in text format.                                             | Sessions store data in encrypted serialized format.                                             |
+| In PHP **$\_COOKIE **superglobal variable is used to access the cookie values. | In PHP **$\_SESSION** superglobal variable is used to access the session values.                |
+
+## Summary
+
+- **setCookie()** function is used to set a cookie in PHP.
+- **$\_COOKIE **superglobal variable is used to access the cookie values.
+- To delete a cookie, we **set** the cookie with an **expiration** **date** in the **past**.
+
+- **session_start()** function is used to start a session in PHP.
+- **$\_SESSION** superglobal variable is used to access and store session data.
+- **session_destroy()** function is used to destroy the session data.

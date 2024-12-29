@@ -1,0 +1,52 @@
+---
+sidebar_position: 1
+---
+
+# Introduction to PHP
+
+** In simple, PHP is dynamically and loosely typed scripting language. **
+
+PHP is a “scripting language” and it’s an **interpreted** language. If you’ve used compiled languages like C or Go or Swift, the main difference is that you don’t need to compile a PHP program before you run it.
+
+PHP is a dynamically typed language. The types of variables are checked at runtime, rather than before the code is executed as happens for statically typed languages. (These also happen to be compiled – the two characteristics often go hand in hand.)
+
+**PHP is a server-side scripting language**. This means that PHP code is executed on the server before the web page is sent to the client (browser).
+
+The server processes the PHP code, performs any server-side tasks (such as database queries or file manipulations), and then sends the resulting output (typically HTML) to the client's browser.
+
+[Learn basics of PHP](https://www.freecodecamp.org/news/the-php-handbook/)
+
+* Dynalically Typed:
+    Dynamically typed means type are checked at run time, and we don't need to declare the type of variable before using it.
+    
+```js
+let x = 20;
+// Here we don't need to declare the type of x, it will be automatically inferred as number.
+```
+
+* Statically Typed:
+Statically typed means type are checked at compile time, and we need to declare the type of variable before using it.
+    
+```js
+let x: number = 20;
+// Here we need to declare the type of x, it will be number.
+```
+
+
+**PHP is loosely (weakly) typed**. This means that you can use a variable as a string in one line and an integer in the next. PHP will try to convert the variable to the type you need, and if it can’t, it will throw an error.Compared to strongly typed languages like Swift, Go, C or Java, you don’t need to declare the types of your variables.
+
+In its nature, PHP is similar to JavaScript, another dynamically typed, loosely typed, and interpreted language.
+
+
+
+## Start with simple example:
+
+```php
+<?php
+    echo "Hello World!";
+?>
+
+// Here '<?' with this php code starts and '?>' ends PHP code snippet. 
+```
+* The page is technically an HTML page, even though it does not contain HTML tags but just a Hello World string. But the browser can figure out how to display that in the window.
+* We have this opening/closing structure because we can embed PHP inside HTML. PHP is a scripting language, and its goal is to be able to “decorate” an HTML page with dynamic data.

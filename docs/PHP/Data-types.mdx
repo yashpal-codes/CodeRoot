@@ -1,0 +1,503 @@
+---
+sidebar_position: 4
+---
+
+import {
+  TextHighlighter,
+  DividerWithText,
+} from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Data Types in PHP
+
+## Data Types in PHP:
+
+1. Scalar types (Predefined)
+   - boolean (0 or 1)
+   - integer
+   - float
+   - string
+2. Compound types (User Defined)
+   - array
+   - object
+3. Special types
+   - resource
+   - null
+
+- To verify the type of any object in PHP, use the **var_dump()** function
+
+### isset() construct in PHP:
+
+- **isset()** is a construct in PHP which is used to determine if a variable is set and is not NULL.
+- isset() is a language construct, not a function.
+- \*sset() returns true if a variable is set and not null.
+- isset() returns true if an array element exists and not null.
+- isset() returns true if a string index valid or false otherwise.
+- isset() returns true if all variable are set and not null. It’ll stop evaluating once it encounter an unset variable.
+
+```php
+$x = 10;
+var_dump(isset($x));
+// true
+$y = null;
+var_dump(isset($y));
+// false
+
+
+```
+
+### Integer:
+
+Non decimal number are considered as a integer. It can be positive or negative or zero
+
+- We can cast a variable to integer using (int) or intval() function.
+- We can use 'is_int()' or 'is_integer()' function to check if a variable is integer or not.
+
+```php
+$x = 5985;
+var_dump($x);
+// int(5985)
+
+if (is_int($x)) {
+    echo "x is Integer";
+}
+
+```
+
+- Mathematical Operation:
+
+1. **abs(#number)**: Return the absolute value of a number.
+2. **pow(#number, #power)**: Return the value of a number raised to the power.
+3. **round(#number)**: Round a floating-point number.
+4. **floor(#number)**: Rounds down to neaerst integer.
+5. **ceil(#number)**: Rounds up to nearest integer.
+6. **rand(1,100)**: rabdom number between 1 to 100.
+7. **max(#number1, #number2)**: Return the highest value.
+8. **min(#number1, #number2)**: Return the lowest value.
+9. **is_nan(#number)**: Check if a value is not a number.
+
+<DividerWithText text="< End of Integers />" />
+
+### String:
+
+- In single quoted string, to include single quote use backslash(\) before single quote. And other Escaped characters are not interpreted. Means they will be printed as they are written.
+
+```php
+$x = 'My name is \'Yashpal\'';
+echo $x;
+// My name is 'Yashpal'
+
+$y = 'My name is \nYashpal';
+echo $y;
+// My name is \nYashpal, new line character is not interpreted in single quoted string.
+```
+
+- In double quoted string, those charaters are interpreted.
+
+```php
+$x = "My name is \"Yashpal\"";
+echo $x;
+// My name is "Yashpal"
+
+$y = "My name is \nYashpal";
+echo $y;
+// My name is
+// Yashpal, new line character is interpreted in double quoted string.
+
+// Variable interpolation
+$foo = "bar";
+echo "foo is $foo";
+// foo is bar
+// Here $foo is replaced with value of foo.
+```
+
+- Workign with string:
+
+1. Concatenation: We can use dot operator **' . '** to concatenate two strings.
+2. **strlen(#string)**: Return the length of the string.
+3. Case conversion:
+   - **strlower($string)**: Convert string to lower case.
+   - **strupper($string)**: Convert string to upper case.
+   - **ucfirst($string)**: Convert first character to upper case.
+   - **ucwords($string)**: Convert first character of each word to upper case.
+4. **substr($string, $start, $length)**: Return the substring of the string.
+
+```php
+$x = 'Hello';
+$y = 'World';
+echo $x . ' ' . $y;
+// Hello World
+
+echo strlen($x);
+// 5
+
+echo strtolower($x);
+// hello
+
+echo strtoupper($x);
+// HELLO
+
+echo ucfirst($x);
+// Hello
+
+echo ucwords($x);
+// Hello
+
+echo substr($x, 1, 3);
+// ell
+```
+
+5. **strpos($string, $search)**: Return the position of the first occurrence of a substring in a string.
+6. **str_replace($search, $replace, $string)**: Replace all occurrences of the search string with the replacement string.
+
+```php
+    $x = 'Hello World';
+    echo strpos($x, 'World');
+    // 6
+
+    echo str_replace('World', 'Yashpal', $x);
+    // Hello Yashpal
+```
+
+7. Splitting and joining string:
+   - **explode($delimiter, $string)**: Split a string into an array.
+   - **implode($glue, $array)**: Join array elements with a string.
+
+```php
+$x = "apple, banana, orange";
+$arr = explode(",", $x);
+print_r($arr);
+// Array ( [0] => apple [1] => banana [2] => orange )
+
+$y = implode(" ", $arr);
+echo $y;
+// apple banana orange
+```
+
+<DividerWithText text="< End of String />" />
+
+### Array
+
+In PHP arraay is a data structure that can store values of any type. It can store multiple values in a single variable.
+
+In PHP we can divide array in three different types:
+
+1. Indexed Array
+2. Associate Array
+3. Mutidimensional Array
+
+#### Indexed Array:
+
+- In Index array we can store values in a sequential manner. Index starts from 0.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$names= ['John', 'Doe', 'Smith'];
+```
+
+#### Associate Array:
+
+- In Associate array we can store values in key-value pair.
+
+```php
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"]
+```
+
+#### Multidimensional Array:
+
+- In Multidimensional array we can store array inside an array.
+
+```php
+$person = [
+    ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"],
+    ['name' => 'Doe', 'age' => 25, 'city' => "New York"]
+]
+```
+
+#### Accessing Array Elements:
+
+- We can access array elements using index or key.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+echo $fruits[0];
+// Apple
+
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+echo $person['name'];
+// John
+```
+
+#### Modifing Array Elements:
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$fruits[3] = 'Mango';
+print_r($fruits);
+// [0] => Apple [1] => Banana [2] => Orange [3] => Mango
+
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+$person['age'] = 25;
+print_r($person);
+// [name] => John [age] => 25 [city] => Hawaii Island
+
+```
+
+#### Adding Elements:
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$fruits[] = 'Mango';
+//Add Mango at the end of the array
+
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+$person['contact'] = '1234567890';
+print_r($person);
+// [name] => John [age] => 24 [city] => Hawaii Island [contact] => 1234567890
+```
+
+#### Removing Elements:
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+unset($fruits[1]);
+//Remove Banana from the array
+```
+
+#### Array Functions:
+
+1. **count**:
+   - Return the number of elements in an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$count = count($fruits);
+echo $count;
+// 3
+```
+
+2. **array_push**:
+   - Add one or more elements to the end of an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+array_push($fruits, 'Mango', 'Pineapple');
+print_r($fruits);
+// [0] => Apple [1] => Banana [2] => Orange [3] => Mango [4] => Pineapple
+```
+
+3. **array_merge**:
+   - Merge one or more arrays.
+
+```php
+$fruits1 = array('Apple', 'Banana', 'Orange');
+$merged_array = array_merge($fruits1, ['Mango', 'Pineapple']);
+print_r($merged_array);
+// [0] => Apple [1] => Banana [2] => Orange [3] => Mango [4] => Pineapple
+```
+
+4. **array_pop**:
+   - Remove the last element from an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$removed_item = array_pop($fruits);
+print_r($fruits);
+// [0] => Apple [1] => Banana
+
+echo $removed_item;
+// Orange
+```
+
+5. **array_shift**:
+   - Remove the first element from an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$removed_item = array_shift($fruits);
+print_r($fruits);
+// [0] => Banana [1] => Orange
+
+echo $removed_item;
+// Apple
+```
+
+6. **array_unshift**:
+   - Add one or more elements to the beginning of an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+array_unshift($fruits, 'Mango', 'Pineapple');
+print_r($fruits);
+// [0] => Mango [1] => Pineapple [2] => Apple [3] => Banana [4] => Orange
+```
+
+7. **in_array**:
+   - Check if a value exists in a array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+if (in_array('Apple', $fruits)) {
+    echo "Apple is in the array";
+}
+```
+
+8 **array_keys**: - Return all the keys of an array, into a new array.
+
+```php
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+$keys = array_keys($person);
+print_r($keys);
+// [0] => name [1] => age [2] => city
+```
+
+9. **array_values**:
+   - Return all the values of an array, into a new array.
+
+```php
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+$values = array_values($person);
+print_r($values);
+// [0] => John [1] => 24 [2] => Hawaii Island
+```
+
+10. **is_array**:
+
+    - Check if a variable is an array.
+
+11. **array_unique**:
+    - Remove duplicate values from an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange', 'Apple');
+$unique_fruits = array_unique($fruits);
+print_r($unique_fruits);
+// [0] => Apple [1] => Banana [2] => Orange
+```
+
+12. **array_search**:
+    - Search an array for a value and return the key.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+$key = array_search('Banana', $fruits);
+echo $key;
+// 1
+
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+$search_array = array_search('24',$person);
+echo $search_array;
+// age
+```
+
+13. **array_filter**:
+    - Filter the elements of an array using a callback function.
+
+```php
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+$even_numbers = array_filter($numbers, function($number) {
+    return $number % 2 == 0;
+});
+print_r($even_numbers);
+// [1] => 2 [3] => 4 [5] => 6 [7] => 8 [9] => 10
+```
+
+14. **array_map**:
+    - Apply a user-defined function to each element of an array, differenet between map and filter is that map will work on all values in array and filter will work on only those values which satisfy the condition.
+
+```php
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+$squared_numbers = array_map(function($number) {
+    return $number * $number;
+}, $numbers);
+print_r($squared_numbers);
+// [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 [5] => 36 [6] => 49 [7] => 64 [8] => 81 [9] => 100
+```
+
+15. **array_reduce**:
+    - Reduce the array to a single value using a callback function, similar to JS reduce function.
+
+```php
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+$sum_numbers = array_reduce($numbers, function($sum,$current) {
+    return $sum + $current;
+},0);
+echo $sum_numbers;
+// 55
+```
+
+16. **array_slice**:
+    - Extract a slice of the array.
+
+```php
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+$slice = array_slice($numbers, 2, 5);
+print_r($slice);
+// [0] => 3 [1] => 4 [2] => 5 [3] => 6 [4] => 7
+```
+
+17. **array_walk**:
+    - similarly to array_map() does something for every item in the array, but in addition it can change values in the existing array
+    - Need to add **&** before the **_variable_** name to change the value in the array.
+    - array_walk does not return an array, instead it return 0 or 1, 0 for failure and 1 for success.
+
+```php
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+array_walk($numbers, function(&$number) {
+    $number = $number * 2;
+});
+print_r($numbers);
+// [0] => 2 [1] => 4 [2] => 6 [3] => 8 [4] => 10 [5] => 12 [6] => 14 [7] => 16 [8] => 18 [9] => 20
+```
+
+#### Sorting Array:
+
+1. **sort**:
+   - Sort an array in ascending order.
+
+```php
+$fruits = array('Pineapple','Apple', 'Banana', 'Orange');
+sort($fruits);
+print_r($fruits);
+// [0] => Apple [1] => Banana [2] => Orange [3] => Pineapple
+```
+
+2. **rsort**:
+
+   - Sort an array in descending order.
+
+3. **asort**:
+
+   - Sort an associative array in ascending order, according to the value.
+
+4. **ksort**:
+   - Sort an associative array in ascending order, according to the key.
+
+#### Iterating Array:
+
+- **foreach**:
+  - Loop through each key/value pair in an array.
+
+```php
+$fruits = array('Apple', 'Banana', 'Orange');
+foreach ($fruits as $fruit) {
+    echo $fruit . "\n";
+    // Apple
+    // Banana
+    // Orange
+}
+
+$person = ['name' => 'John', 'age' => 24, 'city' => "Hawaii Island"];
+foreach ($person as $key => $value) {
+    echo $key . " : " . $value . "\n";
+    // name : John
+    // age : 24
+    // city : Hawaii Island
+}
+```
+
+<DividerWithText text="< End of Array />" />
+
+### Object:
+
+- An object is a **instance** of a **class** in PHP.
+- We will learn about class and object in upcoming sections.

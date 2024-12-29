@@ -1,0 +1,60 @@
+---
+sidebar_position: 9
+---
+
+import {
+  TextHighlighter,
+  DividerWithText,
+} from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Error Handling in PHP
+
+**In PHP, we can use try, catch, and finally blocks to handle exceptions.**
+
+- **Try Block:** The code that can potentially throw an exception is placed inside the try block.
+- **Catch Block:** The code that handles the exception is placed inside the catch block.
+- **Finally Block:** The code that should always run, regardless of whether an exception was thrown, is placed inside the finally block.
+
+- In below code **$err** is a instance/object of a Exception class.
+
+<TextHighlighter text="We can use keyword **Throwable to catch both 'Exception' and 'Error' objects." />{" "}
+
+```php
+$item = 4;
+
+try{
+    if($item > 3){
+        throw new Exception("Item is greater than 3 \n");
+    }
+    echo "Item is less than 3";
+} catch(Exception $err){
+    echo "Caught exception: ", $err->getMessage();
+} finally {
+    echo "Finally block";
+}
+
+
+// Output: Caught exception: Item is greater than 3
+//Finally block
+```
+
+```php
+// Use of Throwable
+
+$number = 3;
+$array = [];
+
+try{
+    for($i = $number; $i > -1; $i--){
+        $num = $number/$i;
+        array_push($array,$num);
+    }
+}catch(Throwable $e){
+    echo "Caught exception: ", $e->getMessage();
+}finally{
+	print_r($array);
+}
+
+// Output: Caught exception: Division by zero
+// Array ( [0] => 3 [1] => 1.5 [2] => 1 [3] => 0 )
+```

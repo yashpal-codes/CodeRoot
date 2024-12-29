@@ -1,0 +1,27 @@
+---
+sidebar_position: 8
+---
+
+# Importing PHP Files
+
+To import PHP files in another PHP file, we can use the `include` or `require` statement.
+
+## Include Statement:
+* Include load the another PHP file using relative path, and if the file is not found, it will generate a warning.
+* Include_once does the same, but onlr for the first time.*
+
+```php
+include ('../file.php');
+include_once ('../files.php');
+```
+
+## Require Statement:
+* Require does the same, but if the file is not found, **it will generate a fatal error.**
+
+* Require_once does the same, but only for the first time.
+
+```php
+require ('../file.php');
+require_once ('../files.php');
+```
+

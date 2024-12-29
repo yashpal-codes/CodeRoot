@@ -1,0 +1,50 @@
+---
+sidebar_position: 10
+---
+
+# TypeScript in React
+
+Generally I recommend using TypeScript in React projects. It helps to catch errors early and makes the code more readable. Here are some tips to get started with TypeScript in React.
+
+### Function Component Return Types
+- `React.FC` is a generic type that takes the props type as a parameter.
+- `ReactElement` is the return type of a function component.
+- `JSX.Element` is the return type of a JSX expression.
+- `React.ReactNode` is the return type of a component that can return multiple elements and used in defining children prop.
+
+### React.FC
+- `React.FC` is a generic type that takes the props type as a parameter.
+- We can use `React.FC` to define the type of a function component.
+- We can pass props to `React.FC` as a generic type.
+- React.fc gives you a couple of different things. It gives you first of all, it makes sure that the thing that you're returning is JSX. So it forces you to return something. It says void is not assignable to type React node. 
+
+
+```tsx
+    import React from 'react';
+    export const Button: React.FC<Props> = (props: Props) => {}
+```
+
+### ReactElement
+- Simply the JSX elements like to `<Component>` `<div>` `<p>` are ReactElement.
+- Both React element and JSX.Element represents the type of element created by using JSX syntax in react.
+- We can use either type to represent the return type of a function component.
+
+### What is key difference in React.FC and ReactElement ?
+- Origin:
+    * `ReactElement`: Built-in type from the react module. It reflects the actual internal representation of a React element after compilation (the object created by React.createElement).
+    * `JSX.Element`: A type alias defined through a global namespace (JSX). It describes the structure of the JSX element before compilation, focusing on the developer's intended UI structure.
+
+- Specificity:
+    * `ReactElement`: More specific, representing the exact object structure with type information for props and children.
+    * `JSX.Element`: More generic, using any for props and type to allow for flexibility in how different libraries might implement JSX. This is because JSX can be transpiled differently depending on the toolchain.
+
+### JSX.Element
+- It is the return type of a JSX expression.
+- `JSX.Element` can be used as a return type of a function component.
+- Internal Representation: Under the hood, JSX elements are transformed into JavaScript function calls using `React.createElement` during compilation. This function creates the virtual DOM elements that React uses to manipulate the UI
+
+### React.ReactNode
+- In DOM we have Node and element, text, comment, document as a type of Node.
+- So Element only represent html tag(element), so ReactElement also represent the type for element(tag).
+- `React.ReactNode` represent a type of Node, which can be any type of node like element, text, comment, document.
+- So if we have a function that does't return pure jsx we can use ReactNode as a return type of that function.

@@ -1,0 +1,179 @@
+---
+sidebar_position: 11
+---
+
+import {
+  TextHighlighter,
+  DividerWithText,
+} from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Forms in PHP
+
+- We can use HTML form with PHP to collect user input.
+
+<TextHighlighter text='In PHP, **superglobals **`$_GET`, **`$_POST` and **$_Server are used to collect form data after submitting an HTML form with method "get" or "post" respectively.' />
+
+- $\_GET and $\_POST are associate arrays that store form data using key and value pairs
+
+---
+
+[Link to PHP Form Validation Tutorial](https://www.phptutorial.net/php-tutorial/php-filter_var/)
+
+---
+
+```HTML
+<!DOCTYPE html>
+<html>
+<body>
+    <form action='form.php' method='post'>
+        Name: <input type='text' name='name'><br>
+        Email: <input type='email' name='email'><br>
+        <button type='submit'>Submit</button>
+    </form>
+</body>
+</html>
+```
+
+- form element has two important attributes
+
+  - action : Specify the URL, that process the form data. In our case it is `form.php`.
+  - method : Specify the HTTP method to handle form data.
+
+- The form method is case-insensitive. It means that you can use either post or POST. If you don’t specify the method attribute, the form element will use the get method by default.
+
+### $\_GET:
+
+- If we submit form using `GET` method, then we can access form data using `$_GET` superglobal.
+
+```php
+// This will be a html form
+<form action = 'form.php' method='get'>
+    <div>
+        <label for='email'>Email:</label>
+        <input type='text' name='email' />
+    </div>
+    <button type='submit'>Submit</button>
+</form>
+
+//In form.php
+
+if (isset(#_GET['email'])) {
+    echo $_GET['email'];
+    // process the form data
+}
+
+```
+
+- Unlike the POST method, the GET method appends the form data in the URL that processes the form. Suppose the URL that processes the form is http://localhost/form.php. When you enter the email as hello@phptutorial.net and submit a form, you’ll see that the email value is appended to the URL like this
+
+```html
+http://localhost/form.php?email=hello%40phptutorial.net
+```
+
+- If the form has multiple input elements, the web browser will append the form inputs to the URL in the following format:
+
+```html
+http://localhost/form.php?name=John&email=hello%40phptutorial.net
+```
+
+---
+
+### $\_POST:
+
+- If we submit form using `POST` method, then we can access form data using `$_POST` superglobal.
+
+- For example, if a form has an input element with the name email, you can access the email value in PHP via the $\_POST['email']. If the form doesn’t have an email input, the $\_POST won’t have any element with the key 'email'.
+
+```php
+// This will be a html form
+<form action = 'form.php' method='post'>
+    <div>
+        <label for='email'>Email:</label>
+        <input type='text' name='email' />
+    </div>
+    <button type='submit'>Submit</button>
+
+//In form.php
+if (isSet(_POST['email'])){
+    echo $_POST['email'];
+    // process the form data
+}
+```
+
+---
+
+### $\_SERVER['REQUEST_METHOD']
+
+- We can use `$_SERVER['REQUEST_METHOD']` to check the request method of the form.
+
+```php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // process the form data
+}
+```
+
+- This is useful when you have a form that can handle both GET and POST requests.
+
+---
+
+## Form Validation in PHP:
+
+- We normally do form validation in client side using HTML and javascript. But it is also important to validate form data in server side using PHP.
+
+<TextHighlighter text="We can use **htmlspecialchars() to escape the form data. This function convert special characters to HTML entities. This functio is used to prevent **XSS cross site scripting " />
+
+- When you use htmlspecialchars(), the function replaces certain characters with their HTML entity equivalents. These characters are:
+
+  - & (ampersand) becomes &amp;
+  - " (double quote) becomes &quot;
+  - ' (single quote) becomes &#039; (Note: this conversion is optional and depends on the ENT_QUOTES or ENT_NOQUOTES flag)
+  - < (less than) becomes &lt;
+  - ' > ' (greater than) becomes &gt;
+
+- **htmlspecialchars()** helps mitigate XSS by converting special characters in user inputs to their HTML entity equivalents, ensuring that the input is treated as **_plain text _**rather than **executable code**.
+
+<TextHighlighter text="**filter_var() is used to sanitize and validate form data." />
+
+- It is used to filter variables with a specified filter. This function is useful for validating form data, such as email addresses, URLs, and integers.
+
+#### **Validation Filters**:
+
+1. **FILTER_VALIDATE_EMAIL** - Validates an email address
+2. **FILTER_VALIDATE_URL** - Validates a URL
+3. **FILTER_VALIDATE_INT** - Validates an integer
+4. **FILTER_VALIDATE_FLOAT** - Validates a float
+5. **FILTER_VALIDATE_IP** - Validates an IP address
+6. **FILTER_VALIDATE_BOOLEAN** - Validates a boolean
+
+#### **Sanitization Filters**:
+
+1. **FILTER_SANITIZE_EMAIL** - removes invalid chart from email
+2. **FILTER_SANITIZE_URL** - removes all illegal characters from URL
+3. **FILTER_SANITIZE_NUMBER_INT** - removes all illegal characters from number except digit, plus and minus sign.
+
+```php
+$email = "
+if (filter_var($email,FILTER_VALIDATE_EMAIL)){
+    echo "Valid email address";
+} else {
+    echo "Invalid email address";
+}
+
+//Sanitize and validate email
+
+// User input with potentially malicious or invalid characters
+$input_email = " <script>alert('hack');</script>user@example.com; DROP TABLE users;";
+
+// Sanitize the input email
+$sanitized_email = filter_var($input_email, FILTER_SANITIZE_EMAIL);
+
+// Output the sanitized result
+
+echo "Original Input: " . $input_email . "\n";
+
+echo "Sanitized Email: " . $sanitized_email;
+
+//Original Input: <script>alert('hack');</script>user@example.com; DROP TABLE users;
+
+//Sanitized Email: scriptalert'hack'scriptuser@example.comDROPTABLEusers
+```

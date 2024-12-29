@@ -1,0 +1,90 @@
+---
+sidebar_position: 10
+---
+
+# Time and Date in PHP
+
+Computers stores date and time as a UNIX Timestamp. A UNIX Timestamp is a long integer containing the number of **seconds** between the Unix Epoch (January 1 1970 00:00:00 GMT) and the time specified.
+
+Like current time stamp will be difference between curret time and Unix Epoch (January 1 1970 00:00:00 GMT).
+
+* In PHP, to get current time stamp we can use `time()` function.
+
+```php
+echo time(); // Output: 1632210800
+
+$current_time = time();
+
+echo $current_time - 7*24*60*60;
+```
+* To set a specific date and time, we can use the `mktime()` function.
+
+```php
+
+$timestamp = mktime(0, 0, 0, 10, 1, 2021);
+
+echo $timestamp; // Output: 1633046400
+
+echo "Current Date is 18 June 2023".mktime(0,0,0,6,18,2023);
+// Output: Current Date is 18 June 2023 1673980800
+
+```
+
+* To set timezone in PHP, we can use `date_default_timezone_set()` function.
+
+```php
+date_default_timezone_set('Asia/Kolkata');
+echo date_default_timezone_get(); // Output: Asia/Kolkata
+```
+
+### Date
+
+* We can uae `date()` function to format date and time.
+
+* date(string $format, int $timestamp = time()): string
+    * It take 2 argumetns, first is format in string and second is timestamp (optional).
+    * It return formatted date and time in string format.
+
+```php
+// If 
+echo date('d-m-Y'); // Output: 22-09-2021 or current date
+
+echo date('d-m-Y H:i:s'); // Output: 22-09-2021 12:00:00 or current date and time
+
+echo date('d-m-Y H:i:s', 1632210800); // Output: 22-09-2021 12:00:00
+
+echo date('d-m-Y H:i:s', mktime(0, 0, 0, 10, 1, 2021)); // Output: 01-10-2021 00:00:00
+
+```
+
+* **Date formats**:
+    * Y - Year (4 digits) 2024
+    * y - Year (2 digits) 24
+    * M - Month (3 letters) Jan, Feb
+    * m - Month (2 digits) 01, 02
+    * D - Day (3 letters) Mon, Tue
+    * d - Day (2 digits) 01, 02
+    * H - Hour (24-hour format)
+    * h - Hour (12-hour format)
+    * i - Minutes
+    * s - Seconds
+    * F - Full month name
+    * M - Short month name Jan, Feb
+    * a - am or pm
+    * A - AM or PM
+
+### DateTime class:
+
+* PHP has a built-in class called `DateTime` that can be used to work with dates and times.
+* This class provides a lot of useful methods to work with dates and times.
+
+```php
+$date = new DateTime();
+
+echo $date->format('d-m-Y H:i:s'); // Output: 22-09-2021 12:00:00
+
+$new_date = $date->modify('+3 day');
+
+echo $new_date->format('d-m-Y H:i:s'); // Output: 25-09-2021 12:00:00
+
+```

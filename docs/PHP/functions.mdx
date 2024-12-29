@@ -1,0 +1,109 @@
+---
+sidebar_position: 5
+---
+
+import {
+  TextHighlighter,
+  DividerWithText,
+} from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Function in PHP
+
+A function can return a value. Only one value can be returned from a function, not more than one. You do that using the **return** keyword. If omitted, the function returns **null**.
+
+- A variable declared inside a function is local to that function.
+
+```php
+function add($a, $b) {
+    return $a + $b;
+}
+
+echo add(1, 2); // 3
+```
+
+- IN javascript all fucntions are by default closures, so they can access outer variable, but in PHP functions are not closures by default, so they can't access outer variable.
+
+- In PHP variable declared inside a fucntion is local to that function and only available inside that function.
+
+- However, we can access global variables using **global** keyword, and other variables using **use** keyword.
+
+**\* In PHP function parameters are also local to that function.**
+
+```php
+$globalVar = 10;
+
+function add($a, $b) {
+    global $globalVar;
+    $c = 5;
+    return $a + $b + $globalVar + $c;
+}
+
+echo add(1, 2); // 18
+```
+
+- **In javascript, values are passed br reference to the function, so any change in value inside the function will also change the actual value.
+  However, In PHP values are passed as a value only, reference is not passed, so any change made inside function will not change actual value**
+
+<TextHighlighter text="But if we want to pass value by reference, we need to use **& operator before the parameter name" />
+
+````php
+
+```JS
+const x = ['john','dev','swift']
+const y = [32,34,45.89]
+
+function nameChange(name, newName) {
+    name[0] = "yash"
+    return name.concat(newName)
+}
+
+console.log(nameChange(x,y))
+// ['yash','dev','swift',32,34,45.89]
+console.log(x)
+// ['yash','dev','swift']
+// Here x is changed
+````
+
+#### There are three types of functions in PHP:
+
+1. Named Functions.
+2. Anonymous Functions.
+3. Arrow Functions.
+
+We have already seen Named Functions. Let's see Anonymous Functions.
+
+#### Anonymous Functions:
+
+- As name suggest, these functions don't have a name. They are defined using the **function** keyword followed by the parameters and the function body.
+
+- They are stored into a variable.
+
+- In anonymous functions, we can use **use** keyword to access the outer variables.
+
+```php
+$string = "Addinf numbers";
+$sum = function($a, $b) use($string) {
+    echo $string;
+    // here $string is accessible because of use keyword
+    return $a + $b;
+};
+
+$sum(1, 2); // 3
+```
+
+#### Arrow Functions:
+
+- we use **fn** keyword to define arrow functions.
+
+- Arrow functions are always anonymous, and we can access outer variable without using use keyword.
+
+- Arrow functions support the same features as anonymous functions, except that using variables from the parent scope is always automatic.
+
+```php
+$b = 10;
+
+$test = fn($a) => $a+$b;
+// here we have access to $b without using use keyword
+echo $test(5);
+// 15
+```

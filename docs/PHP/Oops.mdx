@@ -1,0 +1,381 @@
+---
+sidebar_position: 7
+---
+
+import {
+  TextHighlighter,
+  DividerWithText,
+} from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Opps and Classes in PHP
+
+## OOPS: Object Oriented Programming.
+
+- **Object-oriented programming (OOP) is a programming paradigm that uses "objects" to design applications and computer programs.**
+- In OOP, a **class** is a instance of an object.
+- **Class** is a blueprint for creating objects.
+- As example, Bank account is a class, then we can consider account number a object of that class, this account number can have some properties like balance, account holder name, etc.
+
+- We have different concepts in OOP:
+  1. **Class**
+  2. **Object**
+  3. **Inheritance**
+  4. **Polymorphism**
+  5. **Abstraction**
+  6. **Encapsulation**
+
+### Class:
+
+- Class are creted using **class** keyword.
+- Class must be in PascalCase ( MyNameIsYash).
+
+- We can create a object from class using **new** keyword.
+
+```php
+class Animal {
+    // Content here
+};
+
+$dog = new Animal();
+// dog is object of Animal class.
+
+$lion = new Animal();
+// lion is another object of Animal class.
+```
+
+- These objects will share same characteristics defiend in the class, but they wil have a life of their own.
+
+```php
+class Animal {
+    public $name = "Dog";
+    public $color = "Black";
+};
+
+$dog = new Animal();
+```
+
+<TextHighlighter text="We can define **properties and **methods in class, properties are variables and methods are functions" />
+
+- Properties and methods can be public, private, protected. This are access modifiers.
+  - **public** : Can be accessed from anywhere.
+  - **private** : Can be accessed only from within the class. Even object or child class of the class can't access it.
+  - **protected** : Can be accessed only from within the class and it's child class. However object can't access it.
+
+```php
+class Animal {
+	public $name;
+	private $food;
+	protected $predator;
+}
+
+$dog = new Animal();
+$dog -> name = "neo";
+$dog -> food = 'fish';
+// This will give error, because food is private property.
+$dog -> predator = "self";
+// This will give error, because predator is protected property.
+
+var_dump($dog);
+// Output: object(Animal)#1 (1) { ["name"]=> string(3) "neo" }
+```
+
+- We can access properties and methods using **->** operator.
+
+- Methods are functions defined in class.
+
+<TextHighlighter text="Inside method we can access properties of class by **this keyword, **this keyword always reference to the current **object of that class" />
+
+```php
+class Animal {
+    public $name = "Dog";
+    public $color = "Black";
+    private $food = "Fish";
+
+    public function bark() {
+        echo "Barking";
+        //Here this will be $dog object.
+    }
+};
+
+$dog = new Animal();
+$dog -> bark();
+// Output: Barking, Fish
+```
+
+- **Static properties and methods:**
+  - Static props or methods are bounded to class itself and not to object. So we can access them by class using ""::"" operator.
+  - They are defined using **static** keyword.
+  - To access them inside class we use **self::name**.
+  - To access them outside class we use **ClassName::name**.
+
+```php
+class Animal {
+    public static $name = "Dog";
+    public $color = "Black";
+
+    function __construct($color) {
+        $this -> color = $color;
+    }
+
+    function display(){
+        echo self::$name . "is". $this->color . "in color";
+    }
+};
+
+$dog = new Animal("White");
+$dog -> display();
+// Output: Dog is White in color
+
+Animal::$name = "Cat";
+$dog -> display();
+// Output: Cat is White in color
+```
+
+<DividerWithText text="<End of Class />" />
+
+### Constructor:
+
+- \_\_construct() is a special kind of method in class, which is called automatically when object is created.
+
+- Constructors are automatically invoked when an object of a class is created. They are typically used to initialize an object's properties and perform any setup procedures that are necessary before the object is used.
+
+```php
+class Animal {
+    public $type;
+
+    public function __construct($type) {
+        $this -> type = $type;
+    }
+
+    public function eat($food) {
+        echo $this -> type . " is eating " . $food;
+    }
+}
+
+$ dog = new Animal("Neo");
+$dog -> eat("Biscuits");
+
+// Output: Neo is eating Biscuits
+```
+
+- If property is typed and we are not passing correct typed value to constructor, then it will give error.
+
+```php
+<?php
+class Animal {
+    public int $type;
+
+    public function __construct($type) {
+        $this -> type = $type;
+    }
+
+    public function eat($food) {
+        echo $this -> type . " is eating " . $food;
+    }
+};
+
+$dog = new Animal("neo");
+$dog -> eat("Biscuits");
+//Here $type is int, but we are passing string, so it will give error.
+//Uncaught TypeError
+```
+
+<DividerWithText text="<End of Constructor />" />
+
+### Inheritance:
+
+- In general, Inheritance means inherit from it's parent.
+- IN OOP, child class can access(inherit) the properties and methods from parent class.
+
+- We use **extends** keyword to inherit a class.
+
+- If we define same name property or method in child class, then it will override the parent class property or method.
+
+<TextHighlighter text="To access parent construct, **parent::__construct() is used" />
+
+```php
+
+class Vehicle{
+	public $type;
+
+	function __construct($type){
+		$this -> type = $type;
+	}
+};
+
+class Car extends Vehicle {
+	public $model;
+	public int $year;
+
+	function __construct($model,$year){
+		parent::__construct('Car');
+		$this-> model = $model;
+		$this-> year= $year;
+	}
+
+	public function display(){
+		echo $this->type . $this->model . $this->year;
+	}
+}
+
+$alto = new Car('Alto',2010);
+// Output: Car Alto 2010
+```
+
+<DividerWithText text="<End of Inheritance />" />
+
+### Encapsulation:
+
+- Encapsulation is the bundling of data with the methods that operate on that data, or the restricting of direct access to some of an object's components.
+
+- In OOP, we can restrict the access of properties and methods using access modifiers.
+
+- We can use **public, private, protected** access modifiers.
+
+```php
+class BankAccount {
+    private $balance = 0;
+
+    public function getBalance() {
+        return $this->balance;
+    }
+
+    public function deposit($amount) {
+        if ($amount > 0) {
+            $this->balance += $amount;
+            return true;
+        }
+        return false;
+    }
+
+    public function withdraw($amount) {
+        if ($amount > 0 && $amount <= $this->balance) {
+            $this->balance -= $amount;
+            return true;
+        }
+        return false;
+    }
+}
+
+$account = new BankAccount();
+$account->deposit(100);
+$account->withdraw(50);
+echo $account -> $balance;
+// This will give error, because balance is private property.
+
+echo $account -> getBalance();
+// Output: 50
+```
+
+<DividerWithText text="<End of Encapsulation />" />
+
+### Polymorphism:
+
+- Poly means many and morphism means forms. so polymorphism means many forms.
+- In OOP, polymorphism means that a method can do different things based on the object that it is acting upon.
+
+- **Polymorphism is a core concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common superclass.**
+
+- In PHP, we can achieve polymorphism using **interface** and **abstract class**.
+
+- **Interface:**
+  - Interface is a contract that defines the methods that a class must implement, but does not provide the concrerte implementation.
+  - Interface can't have properties.
+  - We use **implements** keyword to implement interface.
+  - **We can't instantiate interface**. Therefore we can't create object of interface.
+  - To allow developers to create objects of different classes that may be used interchangeably because they implement the same interface or interfaces. A common example is multiple database access services, multiple payment gateways, or different caching strategies. Different implementations may be swapped out without requiring any changes to the code that uses them.
+  - To allow a function or method to accept and operate on a parameter that conforms to an interface, while not caring what else the object may do or how it is implemented. These interfaces are often named like Iterable, Cacheable, Renderable, or so on to describe the significance of the behavior.
+
+```php
+interface Shape{
+    public function area();
+}
+
+class Circle implements Shape{
+    public $radius;
+
+    public function __construct($radius){
+        $this->radius = $radius;
+    }
+
+    public function area(){
+        return 3.14 * $this->radius * $this->radius;
+    }
+}
+
+class Square implements Shape{
+    public $side;
+
+    public function __construct($side){
+        $this->side = $side;
+    }
+
+    public function area(){
+        return $this->side * $this->side;
+    }
+}
+
+$circle = new Circle(4);
+echo $circle->area();
+// Output: 50.24
+
+$square = new Square(2);
+echo $square->area();
+// Output: 4
+```
+
+<TextHighlighter text="Here we have used same name **area() method with different functionality. " />
+
+- **Abstract class**:
+  - Abstract class is a class that can't be instantiated.
+  - Abstract class can have abstract methods, which are methods without body.
+  - **Abstract methods must be implemented in child class.**
+  - **An abstract class can include regular methods with a body, and it can also have concrete methods. In contrast, an interface cannot contain method bodies or concrete methods and properties.**
+  - We use **abstract** keyword to define abstract class and abstract methods.
+  - We use **extends** keyword to inherit abstract class.
+
+```php
+abstract class Engine{
+    abstract public function start();
+    abstract public function stop();
+}
+
+class Car extends Engine{
+    public function start(){
+        echo "Car is starting";
+    }
+
+    public function stop(){
+        echo "Car is stopping";
+    }
+}
+
+class Boat extends Engine{
+    public function start(){
+        echo "Boat is starting on water";
+    }
+
+    public function stop(){
+        echo "Boat is stopping on water";
+    }
+}
+
+$hyundi= new Car();
+$hyundi->start();
+// Output: Car is starting
+
+$boat = new Boat();
+$boat->start();
+// Output: Boat is starting on water
+```
+
+<DividerWithText text="<End of Polymorphism />" />
+
+### Abstraction:
+
+- Abstraction is the concept of hiding the complex implementation details and showing only the necessary features of an object.
+
+- In OOP, we can achieve abstraction using **abstract class** and **interface**.
+- About abstract class and interface, we have already discussed in polymorphism section.
+- Remember that abstract class can have abstract methods and concrete methods, but interface can't have concrete methods.
+  <TextHighlighter text="Note :: In both abstract class and interface, child class must implement **all the abstract methods from the parent." />

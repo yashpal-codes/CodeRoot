@@ -1,0 +1,86 @@
+---
+sidebar_position: 12
+---
+
+# JSON in PHP
+
+JSON stands for javascript object notation. It is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. 
+
+JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others.
+
+In php we can use `json_encode()` and `json_decode()` functions to encode and decode JSON data.
+
+## json_encode():
+
+* Used to convert PHP array to JSON string.
+
+```php
+// Indexed array
+$colors = array("Red", "Green", "Blue");
+$json_colors = json_encode($colors);
+
+print_r($json_colors); // Output: ["Red","Green","Blue"]
+
+// Associative array
+$person = array("name" => "John", "age" => 30, "city" => "New York");
+$json_person = json_encode($person);
+
+print_r($json_person); // Output: {"name":"John","age":30,"city":"New York"}
+```
+
+## json_decode():
+
+* Used to convert JSON string to PHP array.
+* ** decode will return object of stdClass.**
+
+```php
+$php_colors = json_decode($json_person);
+
+print_r($php_colors); // Output: Object(stdClass) ( [name] => John [age] => 30 [city] => New York )
+```
+
+## Serilizing PHP objects to JSON:
+
+* We can also convert PHP objects to JSON string.
+* We need to implement '**JsonSerializable**' interface, this interface has the  '**jsonSerialize()**' method.
+
+```php
+
+class Product implements JsonSerializable {
+    private $id;
+    private $name;
+    private $price;
+    private $secretCode; // Assume this should not be exposed in JSON
+
+    public function __construct($id, $name, $price, $secretCode) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->price = $price;
+        $this->secretCode = $secretCode;
+    }
+
+    // Required method from the JsonSerializable interface
+    public function jsonSerialize() {
+        // Return only the fields that need to be serialized to JSON
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'price' => $this->price
+            // Notice we are not returning 'secretCode'
+        ];
+    }
+}
+
+
+$product = new Product(101, "Laptop", 1299.99, "wer234234234");
+
+// Convert the product object to JSON
+$jsonProduct = json_encode($product);
+// This will call the jsonSerialize method of the Product class
+
+
+echo $jsonProduct;
+
+// Will convert only id, name and price to JSON
+// Output: {"id":101,"name":"Laptop","price":1299.99}
+```
