@@ -1,35 +1,11 @@
+---
+title: HTML Structure
+sidebar_position: 2
+---
+
 import { FontStyle } from "../../src/components/HomepageFeatures/custom-component/index.tsx";
 
-# HTML : Hyper Text Markup Language.
-
-HTML is used to create web pages, It't like bonds in our body, it is skeleton of web page, while CSS is skin and other part of body.
-
-## Global attributes
-
-- **In HTML all tags supports Global attributes.**
-
-1. **class** : Specify classname, using class attribute we can align classname for tags.
-2. **id** : Specify id of an element.
-3. **lang** : Specify the language code for the content in element.
-4. **style** : Specify the _In-line_ style for an element.
-5. **title** : Specify extra information about an element, used in tooltip.
-6. **hidden** : Make an element hidden or visible
-
-## HTML tags
-
-:::info
-
-- Tags are intentionally started with small case, as in html they are used in same way.
-  :::
-
-### 1. `<!DOCTYPE html>` represents HTML 5 version:
-
-<details>
-  <summary>Toggle for details</summary>- The main or starting tag in **HTML 5**
-  - It is case -insensitive but normally written like above. - Without this tag
-  Browser will render web-page in **quirk** mode, less standard, older
-  specifications.
-</details>
+# Structural Tags
 
 ### 2. `<html>` The main tag
 
@@ -143,7 +119,7 @@ This attributes is used to define the encoding use by browser to decode that cha
 ### 3.3. `<link>` Void Tag
 
 - This tag links other document or page to webpage.
-- we can link CSS stylesheet and other file to webpage.
+- We can link CSS stylesheet and other file to webpage.
 
 <FontStyle text="# Link attributes" heading="h4" color="blue" />
 
@@ -166,7 +142,7 @@ This attributes is used to define the encoding use by browser to decode that cha
 - Specify the media type
   linked to webpage. - It can be a image, css or image.
 
-<FontStyle text="4. type" crossorigin="h4" color="orange" />
+<FontStyle text="4. crossorigin" heading="h4" color="orange" />
 
 - Specify if the resource can be fetched with CORS request or not.
 
@@ -187,3 +163,19 @@ This attributes is used to define the encoding use by browser to decode that cha
   </head>
 </head>
 ```
+
+### 3.3. `<style>`
+
+- This tag is used to define internal css for webpage.
+
+```HTML
+<style>
+  .p { color: red};
+  .body-text{font-weight:400};
+</style>
+```
+
+### 4. `<body>` Tag
+
+- This tag/element contains the body part of the webpage.
+- All visible part of the webpage is placed inside it.
