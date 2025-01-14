@@ -1,0 +1,46 @@
+---
+title: Block and Inline Element
+sidebar_position: 4
+---
+
+import { FontStyle } from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Block and Inline level element.
+
+### Block level
+
+- Block level elements take full width of their parent container.
+- Block level elements always starts with new line.
+- Can have width, height, margin, padding and border properties,
+- Block level can have inline element inside them.
+- `<div>` , `<p>`, `<h1>`, `<section>`, `<header>` etc are block level
+
+### Inline
+
+- Inline element takes width as required,
+- Do not start with new line, they will appear in same line.
+- ** Cannot have width or height applied**.
+- ** Cannot contain block level element**.
+- `span`, `a`, `strong`, `i`, `u`, `<img>` are inline element.
+
+```html live
+<>
+    <div style={{color:"blue"}}>This is a block element</div>
+    <div style={{color:"orange"}}>This is a another block level element</div>
+    <br/>
+
+
+    // Both span element will appear in same line, as they do not start with new line.
+    <br />
+    <span style={{color:"blue"}}> I'm span </span>
+    <span style={{color:"orange"}}> Another span element </span>
+
+    <br />
+    <br />
+
+    <p> My Name is <strong> Ram </strong> . </p>
+    <p> My Name is <span style={{color:"green"}}> Ram </span> . </p>
+</>
+```
+
+- If you noticed in between last two `<p>` tags there is a space, that space is due to p tag, which is a block level element and start with new line.

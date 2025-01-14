@@ -1,0 +1,248 @@
+---
+title: Body Tags
+sidebar_position: 3
+---
+
+import { FontStyle } from "../../src/components/HomepageFeatures/custom-component/index.tsx";
+
+# Body Tags
+
+### 4.1 `<img>` Tag
+
+- This tag is used to display image.
+
+  <FontStyle text="# Image attributes" heading="h4" color="blue" />
+
+  <FontStyle text="1. src" heading="h4" color="orange" />
+
+  :::info
+
+  Absolute URL : Links to the external content that is hosted on another webpage or network.
+  Relative URL : Links to the internal content that is hosted on same page or network.
+
+  :::
+
+  <FontStyle text="2. alt" heading="h4" color="orange" />
+
+  - Alternative text, this text is used to display text when image is not loaded on webpage.
+
+  <FontStyle text="3. style" heading="h4" color="orange" />
+
+  - Style attribute to apply inline style to image.
+
+  <FontStyle text="4. usemap" heading="h4" color="orange" />
+
+  - Usemap is used for image map.
+
+### 4.2 `<a>` Void Tag
+
+- This tag is used to insert link to page.
+
+<FontStyle text="# Anchor attributes" heading="h4" color="blue" />
+
+<FontStyle text="1. href" heading="h4" color="orange" />
+
+- Absolute or relative URL to the source.
+
+<FontStyle text="2 target" heading="h4" color="orange" />
+
+- Define target to open the link document or page.
+- **\_self** :: Opens the linked page in same tab/frame.
+- **\_blank** :: Opens the linked page in another tab.
+- **\_parent** :: Opens the link in the immediate parent frame.
+- **\_top** :: Opens the link in the full body of the window, breaking out of all frames.
+
+```html
+<a href="google.com" target="_blank" rel="relationship" />
+```
+
+### 4.3 `<s> or <del>`
+
+- This tag renders a strike through text.
+
+```
+<p> This item is <del>out of stock</del></p>
+
+```
+
+- This item is ~~out of stock~~.
+
+### 4.4 `<u>`
+
+- This tag renders underlined text.
+
+### 4.5 `<br>`
+
+- This is used to insert line break.
+
+```html
+<p>This is line one.<br />This is line two.</p>
+```
+
+- This is line one.
+- This is line two.
+
+### 4.5 `<hr>`
+
+- Horizontal Rule, insert a horizontal rule or divider.
+
+```html
+<p>Section 1</p>
+<hr />
+<p>Section 2</p>
+```
+
+- Section 1
+- --- (horizontal line)
+- Section 2
+
+### 4.6 `<sub>`
+
+- Subscript tag is used to display subscript text
+
+```html
+<!-- Water chemical formula (H₂O) -->
+<span>h<sub>2</sub>o</span>
+```
+
+### 4.7 `<sup>`
+
+- Superscript tag is used to display superscript text like
+
+```html
+
+<!-- Square of x (x²)
+x<sup>2</sup>
+```
+
+### 4.8 `<address>`
+
+- Address tag is used to display user or owner contact information
+
+- In address tag content in italic and a line break will be added after and after the content.
+
+### 4.9 HTML Image map
+
+- An HTML image map enables you to create interactive areas within an image, turning different sections into clickable links. By defining specific coordinates,
+  each area can redirect users to a unique URL when clicked.
+
+- This example shows how to create an interactive image map using HTML. Click on different areas of the image to navigate to specific links.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Image Map Example</title>
+  </head>
+  <body>
+    <h2>Click on the Map</h2>
+    <img
+      src="https://via.placeholder.com/600x400"
+      alt="Placeholder Map"
+      usemap="#map-example"
+      width="600"
+    />
+
+    <map name="map-example">
+      <area
+        shape="rect"
+        coords="50,50,150,150"
+        href="https://www.google.com"
+        alt="Google"
+      />
+      <area
+        shape="circle"
+        coords="300,200,75"
+        href="https://www.wikipedia.org"
+        alt="Wikipedia"
+      />
+      <area
+        shape="poly"
+        coords="400,100,450,150,420,200,380,180"
+        href="https://www.github.com"
+        alt="GitHub"
+      />
+    </map>
+  </body>
+</html>
+```
+
+### 5.0 `<picture>`
+
+- Picture tag is a container for images, it contains different images for different media type.
+
+- If first media is matched browser will display image3, if not it will check second source media, if it matched it will display
+  image4, if no media type is matched default image1 from img tag will be displayed.
+
+```html
+<picture>
+  <source media="(min-width:500px)" srcset="image3.jpg" />
+  <source media="(min-width:300px)" srcset="image4.jpg" />
+  <img src="image1.jpg" alt="image" />
+</picture>
+```
+
+### 5.1 `<table>`
+
+- This tag is used to display a table in web browser.
+
+- It has sub tags like:
+  - `<tr>` : Table Row.
+  - `<th>` : Table Header.
+  - `<td>` : Table Data
+
+```html live
+<table style={{width:"60%", margin:"auto"}}>
+  <tr style={{width:"100%"}}>
+    <th colspan="5"> Metadata </th>
+  </tr>
+  <tr>
+    <th> Name </th>
+    <th> Amount </th>
+    <th> Amount </th>
+    <th> Amount </th>
+    <th> Amount </th>
+  </tr>
+  <tr>
+    <th> Size </th>
+    <td> 200 </td>
+    <td> 300 </td>
+    <td> 100 </td>
+    <td> 500 </td>
+  </tr>
+  <tr>
+    <th> Color </th>
+    <td> Red </td>
+    <td> Yellow </td>
+    <td> Brown </td>
+    <td> Green </td>
+  </tr>
+
+</table>
+```
+
+### 5.1 List in HTML
+
+- `<ol>` : Ordered List.
+  - Ordered list have some kind of ordering for items.
+- `<ul>` : Unordered List.
+
+- `<li>` Line item is used to describe items.
+
+  - Unordered list does not have any ordering for items.
+
+```html
+<ol>
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+</ol>
+
+<ul style={{listStyleType:"square"}}>
+  <li>India</li>
+  <li>USA</li>
+  <li>Greenland</li>
+</ul>
+```
