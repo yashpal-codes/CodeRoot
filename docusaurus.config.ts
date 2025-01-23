@@ -55,17 +55,26 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/logo-no-background.svg",
     navbar: {
-      title: "My Site",
       logo: {
         alt: "My Site Logo",
         src: "img/logo-no-background.svg",
       },
       items: [
         {
+          label: "Intro",
+          to: "/docs/intro",
+        },
+        {
           type: "doc",
-          docId: "PHP/introduction",
+          docId: "HTML/HTML-intro",
           position: "left",
-          label: "PHP",
+          label: "HTML",
+        },
+        {
+          type: "doc",
+          docId: "CSS/CSS Intro",
+          position: "left",
+          label: "CSS",
         },
         {
           type: "doc",
@@ -74,7 +83,13 @@ const config: Config = {
           label: "Typescript",
         },
         {
-          href: "https://github.com/facebook/docusaurus",
+          type: "doc",
+          docId: "PHP/introduction",
+          position: "left",
+          label: "PHP",
+        },
+        {
+          href: "https://github.com/yashpal-codes",
           label: "GitHub",
           position: "right",
         },
@@ -83,15 +98,6 @@ const config: Config = {
     footer: {
       style: "dark",
       links: [
-        {
-          title: "Docs",
-          items: [
-            {
-              label: "Tutorial",
-              to: "/docs/intro",
-            },
-          ],
-        },
         {
           title: "Community",
           items: [
