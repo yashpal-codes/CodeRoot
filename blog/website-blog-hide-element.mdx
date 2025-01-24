@@ -1,0 +1,174 @@
+---
+title: 5 Ways to Hide Element in CSS - A Developer's Guide
+sidebar_position: 1
+slug: "5-Ways-to-Hide-Element-in-CSS-A-Developer's-Guide-v1"
+tags: [Hide Element in CSS, CSS, Display]
+authors: yashpal
+hide_table_of_contents: true
+---
+
+{/* truncate */}
+
+# 5 Ways to Hide Element in CSS
+
+In web development often we need to hide some element, we all know few methods to hide an element, However, we must be aware of effects ( cons / pros) of every method.
+So we will be confident to pick a most suitable method for our need.
+Below is a detailed overview of various methods to hide elements in web development, along with their effects on visibility, layout, interactivity, and DOM presence.
+
+---
+
+### 1. **`display: none`**
+
+- **Effect**: Completely removes the element from the layout and rendering flow. So it won't take any space in layout.
+- **Interactivity**: The element is invisible and non-interactive.
+- **Use Case**: When you want the element to be fully hidden without affecting other elements' layout.
+
+```css
+element {
+  display: none;
+}
+```
+
+---
+
+### 2. **`visibility: hidden`**
+
+- **Effect**: Makes the element invisible, but it still takes up space in the layout.
+- **Interactivity**: The element is non-interactive but still present in the DOM.
+- **Use Case**: When you want the element hidden but don’t want to shift surrounding elements.
+
+```css
+element {
+  visibility: hidden;
+}
+```
+
+---
+
+### 3. **`opacity: 0`**
+
+- **Effect**: Makes the element fully transparent, but it still takes up space in the layout.
+- **Interactivity**: The element is still interactive and clickable.
+- **Use Case**: When you want to hide the element visually but keep it interactive.
+
+```css
+element {
+  opacity: 0;
+}
+```
+
+---
+
+### 4. **`height: 0;` and `overflow: hidden;`**
+
+- **Effect**: Collapses the element’s height to zero, hiding its content.
+- **Interactivity**: The element’s content is non-interactive.
+- **Use Case**: Useful for animations or collapsible elements.
+
+```css
+element {
+  height: 0;
+  overflow: hidden;
+}
+```
+
+---
+
+### 5. **`z-index: -1`**
+
+- **Combined with positioning**.
+- **Effect**: Sends the element behind other elements, potentially making it invisible.
+- **Interactivity**: The element is still in the layout and might be interactive if not completely covered.
+- **Use Case**: To layer elements where the hidden element should stay in the DOM.
+
+```css
+element {
+  position: relative;
+  z-index: -1;
+}
+```
+
+### Live Example
+
+```jsx live
+function CSSToggleDemo() {
+  const [displayStyle, setDisplayStyle] = useState("block");
+  const [opacityStyle, setOpacityStyle] = useState(1);
+  const [visibilityStyle, setVisibilityStyle] = useState("visible");
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => setClicked(true);
+
+  return (
+    <div>
+      <div
+        style={{
+          width: "300px",
+          height: "150px",
+          backgroundColor: "lightgreen",
+          padding: "10px",
+          borderRadius: "10px",
+          margin: "20px auto",
+          textAlign: "center",
+        }}
+      >
+        <p>Parent Container</p>
+        <button
+          style={{
+            width: "200px",
+            height: "50px",
+            backgroundColor: "lightblue",
+            textAlign: "center",
+            fontSize: "20px",
+            borderRadius: "10px",
+            margin: "10px auto",
+            display: displayStyle,
+            opacity: opacityStyle,
+            visibility: visibilityStyle,
+            pointerEvents: opacityStyle === 0 ? "auto" : "none", // Make it interactive only if visible
+          }}
+          onClick={handleClick}
+        >
+          I'm a button
+        </button>
+        {clicked && <p>Button clicked!</p>}
+      </div>
+
+      <div>
+        <button
+          onClick={() =>
+            setDisplayStyle(displayStyle === "none" ? "block" : "none")
+          }
+        >
+          Toggle display: {displayStyle === "none" ? "block" : "none"}
+        </button>
+        <button onClick={() => setOpacityStyle(opacityStyle === 0 ? 1 : 0)}>
+          Toggle opacity: {opacityStyle === 0 ? "1" : "0"}
+        </button>
+        <button
+          onClick={() =>
+            setVisibilityStyle(
+              visibilityStyle === "hidden" ? "visible" : "hidden"
+            )
+          }
+        >
+          Toggle visibility:{" "}
+          {visibilityStyle === "hidden" ? "visible" : "hidden"}
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+### Summary Table
+
+| Method               | Invisible | Takes Space | Interactive | DOM Presence |
+| -------------------- | --------- | ----------- | ----------- | ------------ |
+| `display: none`      | ✅        | ❌          | ❌          | ✅           |
+| `visibility: hidden` | ✅        | ✅          | ❌          | ✅           |
+| `opacity: 0`         | ✅        | ✅          | ✅          | ✅           |
+| `height: 0`          | ✅        | ❌          | ❌          | ✅           |
+| `z-index: -1`        | ✅        | ✅          | ✅          | ✅           |
+
+---

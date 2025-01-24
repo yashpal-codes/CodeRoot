@@ -52,6 +52,7 @@ const config: Config = {
   themes: ["@docusaurus/theme-live-codeblock"],
 
   themeConfig: {
+    hide_table_of_contents: true,
     // Replace with your project's social card
     image: "img/logo-no-background.svg",
     navbar: {
@@ -63,6 +64,11 @@ const config: Config = {
         {
           label: "Intro",
           to: "/docs/intro",
+        },
+        {
+          to: "blog",
+          label: "Blog",
+          position: "left",
         },
         {
           type: "doc",
