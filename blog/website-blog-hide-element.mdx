@@ -93,67 +93,156 @@ element {
 ```jsx live
 function CSSToggleDemo() {
   const [displayStyle, setDisplayStyle] = useState("block");
-  const [opacityStyle, setOpacityStyle] = useState(1);
+  const [opacityStyle, setOpacityStyle] = useState(true);
   const [visibilityStyle, setVisibilityStyle] = useState("visible");
-  const [clicked, setClicked] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
 
-  const handleClick = () => setClicked(true);
+  const handleClick = () => {
+    console.log("button clicked");
+    return setClickCount(() => clickCount + 1);
+  };
+
+  const buttonStyles = {
+    padding: "10px 20px",
+    fontSize: "16px",
+    borderRadius: "8px",
+    border: "none",
+    cursor: "pointer",
+    background: "linear-gradient(45deg, #6C5CE7, #0984E3)",
+    color: "white",
+    fontWeight: "bold",
+    transition: "background 0.3s ease",
+    ":hover": {
+      background: "linear-gradient(45deg, #0984E3, #6C5CE7)",
+    },
+  };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "4px",
+      }}
+    >
       <div
         style={{
           width: "300px",
-          height: "150px",
-          backgroundColor: "lightgreen",
+          height: "200px",
+          background:
+            "linear-gradient(135deg,rgb(218, 228, 245),rgb(159, 238, 185))",
           padding: "10px",
           borderRadius: "10px",
-          margin: "20px auto",
+          margin: "auto",
           textAlign: "center",
+          color: "rgb(230, 76, 29)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <p>Parent Container</p>
-        <button
-          style={{
-            width: "200px",
-            height: "50px",
-            backgroundColor: "lightblue",
-            textAlign: "center",
-            fontSize: "20px",
-            borderRadius: "10px",
-            margin: "10px auto",
-            display: displayStyle,
-            opacity: opacityStyle,
-            visibility: visibilityStyle,
-            pointerEvents: opacityStyle === 0 ? "auto" : "none", // Make it interactive only if visible
-          }}
-          onClick={handleClick}
-        >
-          I'm a button
-        </button>
-        {clicked && <p>Button clicked!</p>}
+        <div>
+          <p>Parent Container</p>
+          <button
+            style={{
+              width: "200px",
+              height: "50px",
+              color: "white",
+              background: "linear-gradient(45deg, #2CA58D, #2196F3)",
+              textAlign: "center",
+              fontSize: "20px",
+              border: "none",
+              borderRadius: "10px",
+              margin: "10px auto",
+              display: displayStyle,
+              opacity: opacityStyle ? "1" : "0",
+              visibility: visibilityStyle,
+            }}
+            onClick={handleClick}
+          >
+            Click Here !
+          </button>
+          {displayStyle === "none" && <div>🚀</div>}
+          <p
+            style={{
+              color: "rgb(228, 74, 74)",
+              fontWeight: "bold",
+            }}
+          >
+            {`Button clicked ${clickCount} times!`}
+          </p>
+        </div>
       </div>
 
       <div>
-        <button
-          onClick={() =>
-            setDisplayStyle(displayStyle === "none" ? "block" : "none")
-          }
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "4px",
+            height: "70px",
+            color: "rgb(13, 148, 13)",
+            fontSize: "17px",
+            fontWeight: "500",
+            whiteSpace: "pre-line",
+          }}
         >
-          Toggle display: {displayStyle === "none" ? "block" : "none"}
-        </button>
-        <button onClick={() => setOpacityStyle(opacityStyle === 0 ? 1 : 0)}>
-          Toggle opacity: {opacityStyle === 0 ? "1" : "0"}
+          {displayStyle === "none"
+            ? `When the button is set to 'display: none', it is removed from the layout, and space is freed up. And text below to moved upward.`
+            : !opacityStyle
+            ? `You can still click on button, as when 'opacity:0' element is still interactive and takes space in layout.`
+            : visibilityStyle === "hidden"
+            ? `When 'visibility:hidden" it is taking space but element is not interactive.`
+            : `Step 1: Click the buttons below one by one.
+    Step 2: Click the button above to see the changes.
+    * Button area if button disappears.`}
+        </p>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center", gap: "4px" }}>
+        <button
+          style={
+            displayStyle === "none"
+              ? { ...buttonStyles, border: "2px solid rgb(207, 52, 125)" }
+              : buttonStyles
+          }
+          onClick={() => {
+            setDisplayStyle(displayStyle === "none" ? "block" : "none");
+            if (!opacityStyle) setOpacityStyle(true);
+            if (visibilityStyle !== "visible") setVisibilityStyle("visible");
+          }}
+        >
+          Display: {displayStyle === "none" ? "block" : "none"}
         </button>
         <button
-          onClick={() =>
+          style={
+            opacityStyle
+              ? buttonStyles
+              : { ...buttonStyles, border: "2px solid rgb(207, 52, 125)" }
+          }
+          onClick={() => {
+            setOpacityStyle(!opacityStyle);
+            if (displayStyle !== "block") setDisplayStyle("block");
+            if (visibilityStyle !== "visible") setVisibilityStyle("visible");
+          }}
+        >
+          Opacity: {opacityStyle ? "1" : "0"}
+        </button>
+        <button
+          style={
+            visibilityStyle === "hidden"
+              ? { ...buttonStyles, border: "2px solid rgb(207, 52, 125)" }
+              : buttonStyles
+          }
+          onClick={() => {
             setVisibilityStyle(
               visibilityStyle === "hidden" ? "visible" : "hidden"
-            )
-          }
+            );
+            if (!opacityStyle) setOpacityStyle(true);
+            if (displayStyle !== "block") setDisplayStyle("block");
+          }}
         >
-          Toggle visibility:{" "}
-          {visibilityStyle === "hidden" ? "visible" : "hidden"}
+          Visibility: {visibilityStyle === "hidden" ? "visible" : "hidden"}
         </button>
       </div>
     </div>
