@@ -1,6 +1,6 @@
 ---
 title: HTML Forms
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 import { FontStyle } from "../../src/components/HomepageFeatures";
@@ -14,13 +14,13 @@ import { FontStyle } from "../../src/components/HomepageFeatures";
 
 <FontStyle text="# Form attributes" heading="h4" color="blue" />
 
-<FontStyle text=" 1. Action" heading="h5" color="orange" />
+<FontStyle text=" 1. Action" heading="h4" color="orange" />
 
 - Action attribute defines
   the endpoint or url where data to be sent when use click on submit form button.
 - Value: The url ( absolute or relative )
 
-<FontStyle text=" 2. Target " heading="h5" color="orange" />
+<FontStyle text=" 2. Target " heading="h4" color="orange" />
 
 - Specifies where to display the response after form is submitted.
 
@@ -29,12 +29,12 @@ import { FontStyle } from "../../src/components/HomepageFeatures";
 - \_blank : New window/tab.
 - \_top : The top level frame.
 
-<FontStyle text=" 3. Method " heading="h5" color="orange" />
+<FontStyle text=" 3. Method " heading="h4" color="orange" />
 
 - Defines the HTTP method to be used to send data to server.
 - Value : get/post/put/delete
 
-<FontStyle text=" 4. Autocomplete " heading="h5" color="orange" />
+<FontStyle text=" 4. Autocomplete " heading="h4" color="orange" />
 
 - Defines autocomplete should be on/off when user is using the form in webpage.
 
@@ -58,18 +58,179 @@ import { FontStyle } from "../../src/components/HomepageFeatures";
 
 - Input is a void tag.
 
-<FontStyle text=" 1. Type " heading="h5" color="orange" />
+<FontStyle text=" 1. Type " heading="h4" color="orange" />
 
 - Define type of input, like button, text, radio, check-box, password, range, search and date.
 
-<FontStyle text=" 2. Id " heading="h5" color="orange" />
+<details>
+<summary> All Values of Type attribute </summary>
+
+Here’s a complete list of valid `type` attribute values for the `<input>` element in HTML, along with descriptions and examples. These are useful for creating various form controls in your web applications.
+
+## 1. `text`
+
+A single-line text field (default if `type` is omitted).
+
+- **Example**: `<input type="text" name="username">`
+- **Use**: General text input (e.g., names, short answers).
+
+## 2. `password`
+
+A single-line text field that masks input (e.g., shows dots or bullets).
+
+- **Example**: `<input type="password" name="pwd">`
+- **Use**: Secure entry for passwords.
+
+## 3. `checkbox`
+
+A box that can be checked or unchecked (boolean).
+
+- **Example**: `<input type="checkbox" name="agree" value="yes">`
+- **Use**: Multiple selections (e.g., "I agree" options).
+
+## 4. `radio`
+
+A circular button for single selection within a group (same `name`).
+
+- **Example**: `<input type="radio" name="color" value="red">`
+- **Use**: Exclusive choices (e.g., pick one color).
+
+## 5. `submit`
+
+A button that submits the form.
+
+- **Example**: `<input type="submit" value="Send">`
+- **Use**: Triggers form submission.
+
+## 6. `button`
+
+A clickable button with no default action.
+
+- **Example**: `<input type="button" value="Click Me">`
+- **Use**: Custom actions via JavaScript.
+
+## 7. `reset`
+
+A button that resets form fields to their initial values.
+
+- **Example**: `<input type="reset" value="Clear">`
+- **Use**: Clears form data.
+
+## 8. `file`
+
+A field for uploading files, often with a "Choose File" button.
+
+- **Example**: `<input type="file" name="upload">`
+- **Use**: File uploads (add `accept="image/*"` to filter types).
+
+## 9. `hidden`
+
+A field not visible to users, used to send data with the form.
+
+- **Example**: `<input type="hidden" name="userId" value="123">`
+- **Use**: Pass data silently (e.g., user IDs).
+
+## 10. `image`
+
+An image that acts as a submit button.
+
+- **Example**: `<input type="image" src="submit.png" alt="Submit">`
+- **Use**: Graphical submit button (sends x, y coordinates of click).
+
+## 11. `number`
+
+A field for numeric input, often with spinner controls.
+
+- **Example**: `<input type="number" name="quantity" min="1" max="10">`
+- **Use**: Numbers only (e.g., quantities).
+
+## 12. `range`
+
+A slider for selecting a numeric value within a range.
+
+- **Example**: `<input type="range" name="volume" min="0" max="100">`
+- **Use**: Adjustable values (e.g., volume control).
+
+## 13. `date`
+
+A date picker (year, month, day).
+
+- **Example**: `<input type="date" name="birthdate">`
+- **Use**: Calendar-based date selection.
+
+## 14. `datetime-local`
+
+A date and time picker (no timezone).
+
+- **Example**: `<input type="datetime-local" name="event">`
+- **Use**: Local date and time (e.g., event scheduling).
+
+## 15. `time`
+
+A time picker (hours, minutes).
+
+- **Example**: `<input type="time" name="appointment">`
+- **Use**: Time-only input.
+
+## 16. `month`
+
+A month and year picker.
+
+- **Example**: `<input type="month" name="expiry">`
+- **Use**: Month selection (e.g., credit card expiry).
+
+## 17. `week`
+
+A week picker (week number and year).
+
+- **Example**: `<input type="week" name="schedule">`
+- **Use**: Weekly planning.
+
+## 18. `color`
+
+A color picker.
+
+- **Example**: `<input type="color" name="favorite">`
+- **Use**: Selecting colors (returns hex code like `#ff0000`).
+
+## 19. `email`
+
+A text field for email addresses, with basic validation.
+
+- **Example**: `<input type="email" name="email">`
+- **Use**: Email input (e.g., `user@example.com`).
+
+## 20. `url`
+
+A text field for URLs, with basic validation.
+
+- **Example**: `<input type="url" name="website">`
+- **Use**: Web addresses (e.g., `https://example.com`).
+
+## 21. `tel`
+
+A text field for telephone numbers.
+
+- **Example**: `<input type="tel" name="phone">`
+- **Use**: Phone numbers (no strict format, often paired with `pattern`).
+
+## 22. `search`
+
+A text field styled for search input, often with a clear button.
+
+- **Example**: `<input type="search" name="query">`
+- **Use**: Search functionality
+
+</details>
+
+<FontStyle text=" 2. Id " heading="h4" color="orange" />
 
 - Id attribute, this is used to bind label and input tags together, label 'for' tag and input 'id' tag must be same to bind them together.
 
 - By keeping both same label and input tags are bind, so label is describing the input tag.
 - This is very useful for screen reader feature in web page.
 
-<FontStyle text=" 3. Name " heading="h5" color="orange" />
+<FontStyle text=" 3. Name " heading="h4" color="orange" />
 
 - Input name is necessary as it defines the description of the input filed and it is required when input result is submitted at server.
 
@@ -86,27 +247,27 @@ import { FontStyle } from "../../src/components/HomepageFeatures";
 
 - When submitted, the server receives something like username=JohnDoe in the request body (for POST) or in the URL query string (for GET, e.g., /submit?username=JohnDoe). If the name attribute were omitted, the input’s data wouldn’t be included in the submission.
 
-<FontStyle text=" 4. Readonly " heading="h5" color="orange" />
+<FontStyle text=" 4. Readonly " heading="h4" color="orange" />
 
 - This attribute makes input element read only, means user cannot change the field data.
 
-<FontStyle text=" 5. Disable " heading="h5" color="orange" />
+<FontStyle text=" 5. Disable " heading="h4" color="orange" />
 
 - This is same as a readonly, but additionally make input element can't select and disable copy and paste.
 
-<FontStyle text=" 6. Placeholder " heading="h5" color="orange" />
+<FontStyle text=" 6. Placeholder " heading="h4" color="orange" />
 
 - Placeholder attribute set placeholder content for input element.
 
-<FontStyle text=" 7. Value " heading="h5" color="orange" />
+<FontStyle text=" 7. Value " heading="h4" color="orange" />
 
 - Value attribute sets the initial value for input element.
 
-<FontStyle text=" 8. Required " heading="h5" color="orange" />
+<FontStyle text=" 8. Required " heading="h4" color="orange" />
 
 - If required attribute is added, means it is compulsory to fill this input field.
 
-<FontStyle text=" Others are Size, Min and Max " heading="h5" color="orange" />
+<FontStyle text=" Others are Size, Min and Max " heading="h4" color="orange" />
 
 ---
 
@@ -498,3 +659,51 @@ function FormExample() {
   );
 }
 ````
+
+<FontStyle text=" 2. Label Tag " heading="h4" color="blue" />
+
+- Label tag is used to label the input element.
+- We've already used this in above examples.
+
+<FontStyle text=" 3. Select Tag " heading="h4" color="blue" />
+
+- Select tag is used to render multiple options.
+- It render a dropdown in which multiple options are visible.
+- User can select from those option.
+- Attributes:
+
+1. **Name**: Attribute to identify the selected data (like name="color", than data is send as color:red)
+2. **Id**: Attribute to align with label tag.
+3. **Value** : The data is send when the option is selected.
+4. **Selected**: Pre-selects this option (e.g., option value="blue" selected makes "Blue" the default).
+5. **Multiple**: Allows multiple option can be selected.
+
+- Option tag is used to render option items inside select dropdown.
+
+```jsx
+<label htmlFor="Cars" > Car Selection </label>
+<br />
+<select name="Car" id="Cars" multiple size="3">
+  <option value="Volvo"> Volvo </option>
+  <option value="Audi"> Audi </option>
+  <option value="Ford"> Ford </option>
+  <option value="Tesla"> Tesla </option>
+</select>
+
+```
+
+```jsx live
+<form>
+  <label for="Cars"> Car Selection </label>
+  <br />
+  <select name="Car" id="Cars" size="3">
+    <option value="" disabled selected>
+      Choose a car
+    </option>
+    <option value="Volvo">Volvo</option>
+    <option value="Audi">Audi</option>
+    <option value="Ford">Ford</option>
+    <option value="Tesla">Tesla</option>
+  </select>
+</form>
+```
