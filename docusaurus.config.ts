@@ -72,7 +72,7 @@ const config: Config = {
         },
         {
           type: "doc",
-          docId: "HTML/html-intro",
+          docId: "HTML/HTML-intro",
           position: "left",
           label: "HTML",
         },
