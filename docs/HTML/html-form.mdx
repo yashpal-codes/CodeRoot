@@ -1,0 +1,500 @@
+---
+title: HTML Forms
+sidebar_position: 4
+---
+
+import { FontStyle } from "../../src/components/HomepageFeatures";
+
+# HTML Form
+
+## HTML `<form >` tag:
+
+- This Form element is a container for all input elements in HTML.
+- This is the powerhouse for all user input related works in a webpage.
+
+<FontStyle text="# Form attributes" heading="h4" color="blue" />
+
+<FontStyle text=" 1. Action" heading="h5" color="orange" />
+
+- Action attribute defines
+  the endpoint or url where data to be sent when use click on submit form button.
+- Value: The url ( absolute or relative )
+
+<FontStyle text=" 2. Target " heading="h5" color="orange" />
+
+- Specifies where to display the response after form is submitted.
+
+- \_self : default, current window/tab.
+- \_parent : Parent frame.
+- \_blank : New window/tab.
+- \_top : The top level frame.
+
+<FontStyle text=" 3. Method " heading="h5" color="orange" />
+
+- Defines the HTTP method to be used to send data to server.
+- Value : get/post/put/delete
+
+<FontStyle text=" 4. Autocomplete " heading="h5" color="orange" />
+
+- Defines autocomplete should be on/off when user is using the form in webpage.
+
+---
+
+## HTML Form input elements:
+
+- HTML Form have many input elements, we will discuss here some of mostly used input elements.
+
+1. HTML input tag.
+2. HTML label tag.
+3. HTML select tag.
+4. HTML fieldset & legend
+
+<FontStyle text=" 1. Input Tag " heading="h4" color="blue" />
+
+- Input element is used to get inputs from user, this element renders a input field in browser where user
+  can fill their details.
+
+- Input have many attributes, combining them we we can render a field to get required user information.
+
+- Input is a void tag.
+
+<FontStyle text=" 1. Type " heading="h5" color="orange" />
+
+- Define type of input, like button, text, radio, check-box, password, range, search and date.
+
+<FontStyle text=" 2. Id " heading="h5" color="orange" />
+
+- Id attribute, this is used to bind label and input tags together, label 'for' tag and input 'id' tag must be same to bind them together.
+
+- By keeping both same label and input tags are bind, so label is describing the input tag.
+- This is very useful for screen reader feature in web page.
+
+<FontStyle text=" 3. Name " heading="h5" color="orange" />
+
+- Input name is necessary as it defines the description of the input filed and it is required when input result is submitted at server.
+
+- When a `<form>` is submitted, the browser collects all the inputs that have a name attribute and sends their name=value pairs to the server. This happens via an HTTP request (usually GET or POST, depending on the form’s method attribute).
+
+- It acts like a key in a key-value pair, where the name is the key and the input’s value (what the user enters or selects) is the value. This attribute is critical for form processing—without it, the input’s data won’t be sent to the server or included in the form’s data payload.
+
+```HTML
+<form action="/submit" method="POST">
+  <input type="text" name="username" value="JohnDoe" />
+  <input type="submit" value="Submit" />
+</form>
+```
+
+- When submitted, the server receives something like username=JohnDoe in the request body (for POST) or in the URL query string (for GET, e.g., /submit?username=JohnDoe). If the name attribute were omitted, the input’s data wouldn’t be included in the submission.
+
+<FontStyle text=" 4. Readonly " heading="h5" color="orange" />
+
+- This attribute makes input element read only, means user cannot change the field data.
+
+<FontStyle text=" 5. Disable " heading="h5" color="orange" />
+
+- This is same as a readonly, but additionally make input element can't select and disable copy and paste.
+
+<FontStyle text=" 6. Placeholder " heading="h5" color="orange" />
+
+- Placeholder attribute set placeholder content for input element.
+
+<FontStyle text=" 7. Value " heading="h5" color="orange" />
+
+- Value attribute sets the initial value for input element.
+
+<FontStyle text=" 8. Required " heading="h5" color="orange" />
+
+- If required attribute is added, means it is compulsory to fill this input field.
+
+<FontStyle text=" Others are Size, Min and Max " heading="h5" color="orange" />
+
+---
+
+<hr />
+
+### Code of Live Example
+
+<details>
+<summary> Code </summary>
+```jsx
+function FormExample() {
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Form submitted! Check the console for data.");
+    const formData = new FormData(e.target);
+    console.log(Object.fromEntries(formData));
+  };
+
+return (
+
+<form onSubmit={handleSubmit} >
+  {/* Button */}
+  <label htmlFor="clickButton"> Button Input: </label>
+  <input type="button" id="clickButton" value="Click Me"
+  />
+
+{/* Text */}
+
+<label htmlFor="textInput"> Text Input: </label>
+<input type="text" id="textInput" name="text" placeholder="Type here..." />
+
+{/* Radio */}
+
+<span> Radio Choices: </span>
+<label>
+  <input type="radio" id="radio1" name="choice" value="One" /> One
+</label>
+
+<label>
+  <input type="radio" id="radio2" name="choice" value="Two" /> Two
+</label>
+
+{/* Checkbox */}
+
+<span> Checkboxes: </span>
+<label>
+  <input type="checkbox" id="check1" name="colors" value="Red" /> Red
+</label>
+
+<label>
+  <input type="checkbox" id="check2" name="colors" value="Green" /> Green
+</label>
+
+{/* Search */}
+
+<label htmlFor="searchInput"> Search Input: </label>
+<input
+  type="search"
+  id="searchInput"
+  name="search"
+  placeholder="Search here..."
+  required
+/>
+
+{/* Password */}
+
+<label htmlFor="passwordInput"> Password: </label>
+<input type="password" id="passwordInput" name="password" required />
+
+{/* Range */}
+
+<label htmlFor="rangeInput"> Range (0-10): </label>
+<input
+  type="range"
+  id="rangeInput"
+  name="range"
+  min="0"
+  max="10"
+  defaultValue="5"
+/>
+
+{/* Date */}
+
+<label htmlFor="dateInput"> Date: </label>
+<input type="date" id="dateInput" name="date" />
+
+{/* DateTime-Local */}
+
+<label htmlFor="datetimeInput"> DateTime-Local: </label>
+<input type="datetime-local" id="datetimeInput" name="datetime" />
+
+{/* Submit */}
+
+<input type="submit" value="Submit Form" />
+
+</form>
+
+);
+}
+
+````
+</details>
+
+### Live Example
+
+```jsx live
+function FormExample() {
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Form submitted! Check the console for data.");
+    const formData = new FormData(e.target);
+    console.log(Object.fromEntries(formData));
+  };
+
+  return (
+    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ maxWidth: "400px", margin: "0 auto" }}
+      >
+        {/* Button */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="clickButton"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333", // Dark gray for contrast
+              fontWeight: "bold", // Bold for emphasis
+            }}
+          >
+            Button Input:
+          </label>
+          <input
+            type="button"
+            id="clickButton"
+            value="Click Me"
+            style={{
+              padding: "8px 12px",
+              backgroundColor: "#f0f0f0",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          />
+        </div>
+
+        {/* Text */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="textInput"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Text Input:
+          </label>
+          <input
+            type="text"
+            id="textInput"
+            name="text"
+            placeholder="Type here..."
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+            }}
+          />
+        </div>
+
+        {/* Radio */}
+        <div style={{ marginBottom: "15px" }}>
+          <span
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Radio Choices:
+          </span>
+          <label
+            style={{
+              marginRight: "15px",
+              color: "#555", // Slightly lighter for options
+              fontWeight: "normal", // Normal weight for options
+            }}
+          >
+            <input type="radio" id="radio1" name="choice" value="One" /> One
+          </label>
+          <label
+            style={{
+              color: "#555",
+              fontWeight: "normal",
+            }}
+          >
+            <input type="radio" id="radio2" name="choice" value="Two" /> Two
+          </label>
+        </div>
+
+        {/* Checkbox */}
+        <div style={{ marginBottom: "15px" }}>
+          <span
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Checkboxes:
+          </span>
+          <label
+            style={{
+              marginRight: "15px",
+              color: "#555",
+              fontWeight: "normal",
+            }}
+          >
+            <input type="checkbox" id="check1" name="colors" value="Red" /> Red
+          </label>
+          <label
+            style={{
+              color: "#555",
+              fontWeight: "normal",
+            }}
+          >
+            <input type="checkbox" id="check2" name="colors" value="Green" />{" "}
+            Green
+          </label>
+        </div>
+
+        {/* Search */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="searchInput"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Search Input:
+          </label>
+          <input
+            type="search"
+            id="searchInput"
+            name="search"
+            placeholder="Search here..."
+            required
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ddd",
+              borderRadius: "20px",
+            }}
+          />
+        </div>
+
+        {/* Password */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="passwordInput"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Password:
+          </label>
+          <input
+            type="password"
+            id="passwordInput"
+            name="password"
+            required
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+            }}
+          />
+        </div>
+
+        {/* Range */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="rangeInput"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Range (0-10):
+          </label>
+          <input
+            type="range"
+            id="rangeInput"
+            name="range"
+            min="0"
+            max="10"
+            defaultValue="5"
+            style={{ width: "100%" }}
+          />
+        </div>
+
+        {/* Date */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="dateInput"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            Date:
+          </label>
+          <input
+            type="date"
+            id="dateInput"
+            name="date"
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+            }}
+          />
+        </div>
+
+        {/* DateTime-Local */}
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="datetimeInput"
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              color: "#333",
+              fontWeight: "bold",
+            }}
+          >
+            DateTime-Local:
+          </label>
+          <input
+            type="datetime-local"
+            id="datetimeInput"
+            name="datetime"
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+            }}
+          />
+        </div>
+
+        {/* Submit */}
+        <div>
+          <input
+            type="submit"
+            value="Submit Form"
+            style={{
+              width: "100%",
+              padding: "10px",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          />
+        </div>
+      </form>
+    </div>
+  );
+}
+````

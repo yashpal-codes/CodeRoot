@@ -1,4 +1,5 @@
 import "./custom-component.css";
+import { JSX } from "react";
 
 interface TextHighlighterProps {
   text: string;
