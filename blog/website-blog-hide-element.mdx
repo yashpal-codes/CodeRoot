@@ -88,7 +88,241 @@ element {
 }
 ```
 
-### Live Example
+<details>
+  <summary> Click here to view the complete Code </summary>
+  ```jsx
+  function CSSToggleDemo() {
+    const [displayStyle, setDisplayStyle] = useState("block");
+    const [opacityStyle, setOpacityStyle] = useState(true);
+    const [visibilityStyle, setVisibilityStyle] = useState("visible");
+    const [clickCount, setClickCount] = useState(0);
+
+    const handleClick = () => {
+    console.log("button clicked");
+    setClickCount((prev) => prev + 1);
+    };
+
+    // Style configurations
+    const buttonStyles = {
+    padding: "10px 20px",
+    fontSize: "16px",
+    borderRadius: "8px",
+    border: "none",
+    cursor: "pointer",
+    background: "linear-gradient(45deg, #6C5CE7, #0984E3)",
+    color: "white",
+    fontWeight: "bold",
+    };
+
+    return (
+
+    <div
+    style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "16px",
+            margin: "0 auto",
+            padding: "10px",
+          }} >
+    {/* Main Demo Container */}
+    <div
+    style={{
+              width: "100%",
+              background: "linear-gradient(135deg, #f8f9fa, #ffffff)",
+              padding: "24px",
+              borderRadius: "16px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+              position: "relative",
+            }} >
+    <h3
+    style={{
+                margin: "0 0 16px 0",
+                color: "#2d3436",
+                fontSize: "20px",
+                textAlign: "center",
+              }} >
+    Interactive CSS Demo
+    </h3>
+
+            {/* Target Button Container */}
+            <div
+              style={{
+                position: "relative",
+                margin: "24px 0",
+                padding: "24px",
+                background: "#ffffff",
+                borderRadius: "12px",
+                border:
+                  displayStyle === "none"
+                    ? "2px dashed #e74c3c"
+                    : "1px solid #dfe6e9",
+              }}
+            >
+              <button
+                style={{
+                  width: "100%",
+                  height: "60px",
+                  background: "linear-gradient(45deg, #2CA58D, #2196F3)",
+                  color: "white",
+                  fontSize: "18px",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  display: displayStyle,
+                  opacity: opacityStyle ? 1 : 0,
+                  visibility: visibilityStyle,
+                }}
+                onClick={handleClick}
+              >
+                🎯 Click Target Button
+              </button>
+
+              {displayStyle === "none" && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "#e74c3c",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                  }}
+                >
+                  ⚠️ Button Hidden (display: none)
+                </div>
+              )}
+            </div>
+
+            {/* Click Counter */}
+            <div
+              style={{
+                textAlign: "center",
+                margin: "16px 0",
+                padding: "12px",
+                background: "#f8f9fa",
+                borderRadius: "8px",
+              }}
+            >
+              <p
+                style={{
+                  margin: "0",
+                  color: "#228be6",
+                  fontSize: "18px",
+                  fontWeight: "600",
+                }}
+              >
+                🎚️ Click Count: {clickCount}
+              </p>
+            </div>
+
+            {/* Instructions */}
+            <div
+              style={{
+                background: "#f8f9fa",
+                padding: "16px",
+                borderRadius: "8px",
+                margin: "16px 0",
+              }}
+            >
+              <p
+                style={{
+                  textAlign: "center",
+                  marginTop: "4px",
+                  fontSize: "17px",
+                  fontWeight: "500",
+                  whiteSpace: "pre-line",
+                  color: "#228be6",
+                  textAlign: "start",
+                }}
+              >
+                {displayStyle === "none"
+                  ? `When the button is set to 'display: none', it is removed from the layout, and space is freed up. And text below to moved upward.`
+                  : !opacityStyle
+                  ? `1. 👆 Click the invisible button area!.
+                  2. Even when fully transparent, when 'opacity:0' element is still interactive and takes space in layout.`
+                  : visibilityStyle === "hidden"
+                  ? `1. 👆 Try to click the invisible button area!.
+                  2. When 'visibility:hidden" it is taking space but element is not interactive.`
+                  : `1. Click the toggle buttons below.
+        2. Click the main button* above to test.
+        * Button area if button disappears.`}
+              </p>
+            </div>
+
+            {/* Control Buttons */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "4px",
+                marginTop: "24px",
+              }}
+            >
+              <button
+                style={{
+                  ...buttonStyles,
+                  background:
+                    displayStyle === "none"
+                      ? "linear-gradient(45deg, #e74c3c, #c0392b)"
+                      : "linear-gradient(45deg, #6C5CE7, #0984E3)",
+                }}
+                onClick={() => {
+                  setDisplayStyle((prev) => (prev === "none" ? "block" : "none"));
+                  if (!opacityStyle) setOpacityStyle(true);
+                  if (visibilityStyle !== "visible") setVisibilityStyle("visible");
+                }}
+              >
+                Display: {displayStyle === "none" ? "none" : "block"}
+              </button>
+
+              <button
+                style={{
+                  ...buttonStyles,
+                  background: !opacityStyle
+                    ? "linear-gradient(45deg, #e74c3c, #c0392b)"
+                    : "linear-gradient(45deg, #6C5CE7, #0984E3)",
+                }}
+                onClick={() => {
+                  setOpacityStyle((prev) => !prev);
+                  if (displayStyle !== "block") setDisplayStyle("block");
+                  if (visibilityStyle !== "visible") setVisibilityStyle("visible");
+                }}
+              >
+                Opacity: {opacityStyle ? "1" : "0"}
+              </button>
+
+              <button
+                style={{
+                  ...buttonStyles,
+                  background:
+                    visibilityStyle === "hidden"
+                      ? "linear-gradient(45deg, #e74c3c, #c0392b)"
+                      : "linear-gradient(45deg, #6C5CE7, #0984E3)",
+                }}
+                onClick={() => {
+                  setVisibilityStyle((prev) =>
+                    prev === "hidden" ? "visible" : "hidden"
+                  );
+                  if (!opacityStyle) setOpacityStyle(true);
+                  if (displayStyle !== "block") setDisplayStyle("block");
+                }}
+              >
+                Visibility: {visibilityStyle === "hidden" ? "hidden" : "visible"}
+              </button>
+            </div>
+          </div>
+        </div>
+
+);
+}
+
+````
+</details>
+
+### Play Around with the Buttons Below to Get More.
 
 ```jsx live
 function CSSToggleDemo() {
@@ -319,7 +553,7 @@ function CSSToggleDemo() {
     </div>
   );
 }
-```
+````
 
 ### Summary Table
 
