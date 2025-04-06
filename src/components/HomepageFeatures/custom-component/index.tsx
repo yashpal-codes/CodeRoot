@@ -24,7 +24,7 @@ export function TextHighlighter({
   return (
     <div>
       <p style={{ color: color }} className="text-highlight">
-        `${text}`
+        {text}
       </p>
     </div>
   );
