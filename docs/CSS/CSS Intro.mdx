@@ -1,22 +1,83 @@
-# CSS : Cascading Style Sheet
+---
+title: Introduction
+sidebar_position: 1
+---
 
-## CSS Selector
+import { FontStyle } from "../../src/components/HomepageFeatures";
 
-\*\* In CSS selector is used to apply specific style to an element, selector is a pattern or a name in which we define
-some styles, and this selector is bound with element to apply that styles to an element. Like class selector, universal selector.
+# CSS - Cascading Style Sheet
 
-- We will learn more about selector in CSS : [Link to CSS]
+#### HTML forms the structure of a webpage, like a skeleton, while CSS styles it, acting as the visual layer or skin.
 
-```
-// Universal selector
-* {
-    color:orange
-}
-//
+<FontStyle
+  text=" CSS is based on selectors, we can apply styles to element using selectors"
+  heading="h3"
+  color="blue"
+/>
 
-// Pseudo selector
-a:hover {
-color:blue
-}
+![selector](assets/selector.png)
 
-```
+### CSS Box Modal
+
+<img
+  src={require("./assets/element.jpg").default}
+  alt="CSS Box Model"
+  width="550"
+  height="400"
+  style={{ display: "block", margin: "auto" }}
+/>
+
+## How To apply CSS to webpage.
+
+<details>
+    <summary> 1. Inline CSS </summary>
+    <p> Inline CSS is directly applied to element </p>
+
+    ```html
+    <p style={color:red}> Some Text here </p>
+    ```
+
+</details>
+
+<details>
+    <summary> 2. Internal CSS </summary>
+    <p> Internal CSS is added into head tag of HTML using style tag </p>
+
+    ```html
+    <!DOCTYPE html >
+    <html>
+        <head>
+            <meta name="author" content="Yash">
+            <style>
+                .p {color=red};
+            </style>
+        </head>
+        <body>
+            <p> This is Internal CSS Style </p>
+        </body>
+    </html>
+    ```
+
+</details>
+
+<details>
+    <summary> 3. External CSS </summary>
+    <p>External CSS involves linking a separate CSS file to an HTML document, allowing styles to be applied to elements using selectors for consistent and reusable design.</p>
+
+    ```html
+    <!DOCTYPE HTML>
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="styles.css" />
+        </head>
+        <body>
+            <p classname="text-style"> This is external CSS </p>
+        </body>
+    </html>
+    ```
+
+</details>
+
+<FontStyle text=" Priority of styles" heading="h3" color="orange" />
+![Priority](assets/priority.jpg)
