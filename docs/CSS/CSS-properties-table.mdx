@@ -1,0 +1,551 @@
+---
+id: css-properties
+title: CSS Properties by Category
+sidebar_position: 2
+description: A comprehensive list of CSS properties organized by category, with descriptions.
+---
+
+import { Table } from "../../src/components";
+
+# CSS Properties by Category
+
+This page lists all CSS properties, grouped by their primary function. Each category is presented in a collapsible table for easy navigation. Click on a category to view its properties and descriptions.
+
+## 1. Layout Properties
+
+<Table
+  data={[
+    {
+      property: "display",
+      description:
+        "Defines the display type (e.g., `block`, `inline`, `flex`, `grid`, `none`).",
+    },
+    {
+      property: "position",
+      description:
+        "Specifies positioning method (e.g., `static`, `relative`, `absolute`, `fixed`, `sticky`).",
+    },
+    {
+      property: "top, right, bottom, left",
+      description: "Sets offset for positioned elements.",
+    },
+    {
+      property: "float",
+      description:
+        "Pushes element to left or right (e.g., `left`, `right`, `none`).",
+    },
+    {
+      property: "clear",
+      description:
+        "Specifies sides where floating elements are not allowed (e.g., `left`, `right`, `both`).",
+    },
+    {
+      property: "z-index",
+      description: "Controls stacking order of elements.",
+    },
+    { property: "width, height", description: "Sets element dimensions." },
+    {
+      property: "min-width, max-width, min-height, max-height",
+      description: "Sets minimum/maximum dimensions.",
+    },
+    {
+      property: "margin, margin-*",
+      description: "Sets outer spacing (`margin-top`, `margin-right`, etc.).",
+    },
+    {
+      property: "padding, padding-*",
+      description: "Sets inner spacing (`padding-top`, `padding-right`, etc.).",
+    },
+    {
+      property: "box-sizing",
+      description:
+        "Defines how width/height are calculated (e.g., `content-box`, `border-box`).",
+    },
+    {
+      property: "overflow, overflow-x, overflow-y",
+      description:
+        "Specifies overflow behavior (e.g., `visible`, `hidden`, `scroll`).",
+    },
+    {
+      property: "visibility",
+      description: "Controls element visibility (e.g., `visible`, `hidden`).",
+    },
+    { property: "clip", description: "Defines a clipping region." },
+    {
+      property: "resize",
+      description:
+        "Controls element resizability (e.g., `none`, `both`, `horizontal`, `vertical`).",
+    },
+  ]}
+/>
+
+## 2. Flexbox Properties
+
+<Table
+  data={[
+    {
+      property: "flex",
+      description: "Shorthand for `flex-grow`, ` ﹶflex-shrink`, `flex-basis`.",
+    },
+    { property: "flex-grow", description: "Specifies how much an item grows." },
+    {
+      property: "flex-shrink",
+      description: "Specifies how much an item shrinks.",
+    },
+    {
+      property: "flex-basis",
+      description: "Sets initial size of a flex item.",
+    },
+    {
+      property: "flex-direction",
+      description: "Defines flex items’ direction (e.g., `row`, `column`).",
+    },
+    {
+      property: "flex-wrap",
+      description: "Controls flex item wrapping (e.g., `nowrap`, `wrap`).",
+    },
+    {
+      property: "justify-content",
+      description:
+        "Aligns items along main axis (e.g., `flex-start`, `center`).",
+    },
+    {
+      property: "align-items",
+      description:
+        "Aligns items along cross axis (e.g., `flex-start`, `stretch`).",
+    },
+    {
+      property: "align-content",
+      description: "Aligns flex lines (e.g., `space-between`, `center`).",
+    },
+    { property: "order", description: "Specifies flex item order." },
+    {
+      property: "align-self",
+      description: "Overrides `align-items` for a specific item.",
+    },
+  ]}
+/>
+
+## 3. Grid Properties
+
+<Table
+  data={[
+    { property: "grid", description: "Shorthand for grid-related properties." },
+    {
+      property: "grid-template-columns, grid-template-rows",
+      description: "Defines size of grid columns/rows.",
+    },
+    {
+      property: "grid-template-areas",
+      description: "Names grid areas for layout.",
+    },
+    {
+      property: "grid-template",
+      description: "Shorthand for `grid-template-rows`, `-columns`, `-areas`.",
+    },
+    {
+      property: "grid-auto-columns, grid-auto-rows",
+      description: "Sets size of implicit columns/rows.",
+    },
+    {
+      property: "grid-auto-flow",
+      description: "Controls auto-placement (e.g., `row`, `column`, `dense`).",
+    },
+    {
+      property: "grid-column, grid-row",
+      description: "Shorthand for placing items in columns/rows.",
+    },
+    {
+      property: "grid-column-start, -end, grid-row-start, -end",
+      description: "Specifies start/end position of grid items.",
+    },
+    {
+      property: "grid-area",
+      description: "Shorthand for `grid-row-start`, `-column-start`, etc.",
+    },
+    {
+      property: "justify-items",
+      description: "Aligns items along inline axis (e.g., `start`, `center`).",
+    },
+    {
+      property: "align-items",
+      description: "Aligns items along block axis (e.g., `start`, `center`).",
+    },
+    {
+      property: "justify-content",
+      description: "Aligns grid along inline axis (e.g., `space-between`).",
+    },
+    {
+      property: "align-content",
+      description: "Aligns grid along block axis (e.g., `space-between`).",
+    },
+    {
+      property: "gap, row-gap, column-gap",
+      description: "Sets gap between rows/columns.",
+    },
+  ]}
+/>
+
+## 4. Typography Properties
+
+<Table
+  data={[
+    { property: "font", description: "Shorthand for font-related properties." },
+    {
+      property: "font-family",
+      description: "Specifies font (e.g., `Arial`, `sans-serif`).",
+    },
+    {
+      property: "font-size",
+      description: "Sets text size (e.g., `16px`, `1rem`).",
+    },
+    {
+      property: "font-weight",
+      description: "Sets text thickness (e.g., `normal`, `bold`, `700`).",
+    },
+    {
+      property: "font-style",
+      description: "Sets text style (e.g., `normal`, `italic`).",
+    },
+    {
+      property: "font-variant",
+      description: "Controls font variants (e.g., `small-caps`).",
+    },
+    {
+      property: "line-height",
+      description: "Sets line height (e.g., `1.5`, `20px`).",
+    },
+    {
+      property: "letter-spacing",
+      description: "Adjusts space between characters.",
+    },
+    { property: "word-spacing", description: "Adjusts space between words." },
+    {
+      property: "text-align",
+      description: "Aligns text (e.g., `left`, `center`, `justify`).",
+    },
+    {
+      property: "text-decoration",
+      description: "Adds decoration (e.g., `underline`, `line-through`).",
+    },
+    {
+      property: "text-transform",
+      description: "Changes case (e.g., `uppercase`, `lowercase`).",
+    },
+    { property: "text-indent", description: "Indents first line." },
+    {
+      property: "white-space",
+      description: "Controls whitespace (e.g., `normal`, `nowrap`, `pre`).",
+    },
+    {
+      property: "direction",
+      description: "Sets text direction (e.g., `ltr`, `rtl`).",
+    },
+    { property: "unicode-bidi", description: "Controls bidirectional text." },
+    { property: "text-shadow", description: "Adds shadow to text." },
+  ]}
+/>
+
+## 5. Color and Background Properties
+
+<Table
+  data={[
+    {
+      property: "color",
+      description: "Sets text color (e.g., `red`, `#ff0000`).",
+    },
+    {
+      property: "background",
+      description: "Shorthand for background properties.",
+    },
+    { property: "background-color", description: "Sets background color." },
+    {
+      property: "background-image",
+      description: "Sets background image (e.g., `url(image.jpg)`).",
+    },
+    {
+      property: "background-repeat",
+      description: "Controls image repeat (e.g., `repeat`, `no-repeat`).",
+    },
+    {
+      property: "background-position",
+      description: "Sets image position (e.g., `top left`, `50%`).",
+    },
+    {
+      property: "background-size",
+      description: "Sets image size (e.g., `cover`, `contain`).",
+    },
+    {
+      property: "background-attachment",
+      description: "Controls scroll behavior (e.g., `scroll`, `fixed`).",
+    },
+    {
+      property: "background-clip",
+      description:
+        "Defines background extent (e.g., `border-box`, `content-box`).",
+    },
+    {
+      property: "opacity",
+      description: "Sets element transparency (e.g., `0.5`).",
+    },
+  ]}
+/>
+
+## 6. Border and Outline Properties
+
+<Table
+  data={[
+    { property: "border", description: "Shorthand for border properties." },
+    {
+      property: "border-width",
+      description: "Sets border width (e.g., `1px`, `medium`).",
+    },
+    {
+      property: "border-style",
+      description: "Sets border style (e.g., `solid`, `dashed`).",
+    },
+    { property: "border-color", description: "Sets border color." },
+    {
+      property: "border-top, -right, -bottom, -left",
+      description: "Sets specific border properties.",
+    },
+    {
+      property: "border-radius",
+      description: "Rounds corners (e.g., `5px`, `50%`).",
+    },
+    {
+      property: "box-shadow",
+      description: "Adds shadow (e.g., `2px 2px 5px rgba(0,0,0,0.3)`).",
+    },
+    { property: "outline", description: "Shorthand for outline properties." },
+    { property: "outline-width", description: "Sets outline width." },
+    {
+      property: "outline-style",
+      description: "Sets outline style (e.g., `solid`, `dashed`).",
+    },
+    { property: "outline-color", description: "Sets outline color." },
+    {
+      property: "outline-offset",
+      description: "Sets space between outline and border.",
+    },
+  ]}
+/>
+
+## 7. Transform Properties
+
+<Table
+  data={[
+    {
+      property: "transform",
+      description:
+        "Applies transformations (e.g., `rotate(45deg)`, `scale(1.5)`).",
+    },
+    {
+      property: "transform-origin",
+      description: "Sets transformation origin (e.g., `center`, `top left`).",
+    },
+    {
+      property: "transform-style",
+      description: "Controls 3D rendering (e.g., `flat`, `preserve-3d`).",
+    },
+    {
+      property: "perspective",
+      description: "Sets 3D perspective (e.g., `1000px`).",
+    },
+    { property: "perspective-origin", description: "Sets perspective origin." },
+    {
+      property: "backface-visibility",
+      description: "Controls back face visibility (e.g., `visible`, `hidden`).",
+    },
+  ]}
+/>
+
+## 8. Transition and Animation Properties
+
+<Table
+  data={[
+    {
+      property: "transition",
+      description: "Shorthand for transition properties.",
+    },
+    {
+      property: "transition-property",
+      description: "Specifies properties to transition (e.g., `opacity`).",
+    },
+    {
+      property: "transition-duration",
+      description: "Sets transition duration (e.g., `0.3s`).",
+    },
+    {
+      property: "transition-timing-function",
+      description: "Defines speed curve (e.g., `ease`, `linear`).",
+    },
+    { property: "transition-delay", description: "Sets transition delay." },
+    {
+      property: "animation",
+      description: "Shorthand for animation properties.",
+    },
+    { property: "animation-name", description: "Specifies `@keyframes` name." },
+    { property: "animation-duration", description: "Sets animation duration." },
+    {
+      property: "animation-timing-function",
+      description: "Defines animation speed curve.",
+    },
+    { property: "animation-delay", description: "Sets animation delay." },
+    {
+      property: "animation-iteration-count",
+      description: "Sets number of runs (e.g., `infinite`, `3`).",
+    },
+    {
+      property: "animation-direction",
+      description: "Sets direction (e.g., `normal`, `reverse`).",
+    },
+    {
+      property: "animation-fill-mode",
+      description: "Controls styles before/after (e.g., `forwards`).",
+    },
+    {
+      property: "animation-play-state",
+      description: "Controls animation state (e.g., `running`, `paused`).",
+    },
+  ]}
+/>
+
+## 9. List Properties
+
+<Table
+  data={[
+    { property: "list-style", description: "Shorthand for list properties." },
+    {
+      property: "list-style-type",
+      description: "Sets marker type (e.g., `disc`, `decimal`, `none`).",
+    },
+    {
+      property: "list-style-position",
+      description: "Sets marker position (e.g., `inside`, `outside`).",
+    },
+    {
+      property: "list-style-image",
+      description: "Sets image as list marker (e.g., `url(image.png)`).",
+    },
+  ]}
+/>
+
+## 10. Table Properties
+
+<Table
+  data={[
+    {
+      property: "border-collapse",
+      description: "Controls border collapsing (e.g., `collapse`, `separate`).",
+    },
+    { property: "border-spacing", description: "Sets distance between cells." },
+    {
+      property: "caption-side",
+      description: "Positions table caption (e.g., `top`, `bottom`).",
+    },
+    {
+      property: "empty-cells",
+      description: "Controls empty cell visibility (e.g., `show`, `hide`).",
+    },
+    {
+      property: "table-layout",
+      description: "Defines table layout algorithm (e.g., `auto`, `fixed`).",
+    },
+  ]}
+/>
+
+## 11. Content and Counters
+
+<Table
+  data={[
+    {
+      property: "content",
+      description: 'Inserts generated content (e.g., `""`, `counter(name)`).',
+    },
+    { property: "counter-increment", description: "Increments a counter." },
+    { property: "counter-reset", description: "Resets a counter." },
+    { property: "quotes", description: "Sets quotation marks" },
+  ]}
+/>
+
+## 12. Filter and Blend Properties
+
+<Table
+  data={[
+    {
+      property: "filter",
+      description: "Applies effects (e.g., `blur(5px)`, `grayscale(50%)`).",
+    },
+    {
+      property: "backdrop-filter",
+      description:
+        "Applies effects to area behind element (e.g., `blur(10px)`).",
+    },
+    {
+      property: "mix-blend-mode",
+      description:
+        "Defines blending with background (e.g., `multiply`, `screen`).",
+    },
+    {
+      property: "background-blend-mode",
+      description: "Defines background layer blending (e.g., `multiply`).",
+    },
+  ]}
+/>
+
+## 13. Miscellaneous Properties
+
+<Table
+  data={[
+    {
+      property: "cursor",
+      description: "Sets cursor type (e.g., `pointer`, `default`).",
+    },
+    {
+      property: "pointer-events",
+      description: "Controls pointer event response (e.g., `auto`, `none`).",
+    },
+    {
+      property: "user-select",
+      description: "Controls text selection (e.g., `auto`, `none`).",
+    },
+    {
+      property: "touch-action",
+      description: "Controls touch behavior (e.g., `auto`, `pan-x`).",
+    },
+    {
+      property: "will-change",
+      description: "Hints properties to optimize (e.g., `transform`).",
+    },
+    {
+      property: "scroll-behavior",
+      description: "Controls scrolling (e.g., `auto`, `smooth`).",
+    },
+    {
+      property: "scroll-snap-type",
+      description: "Defines snap behavior (e.g., `x mandatory`).",
+    },
+    {
+      property: "scroll-snap-align",
+      description: "Specifies snap alignment (e.g., `start`, `center`).",
+    },
+    {
+      property: "scroll-padding",
+      description: "Sets padding for scroll snapping.",
+    },
+    {
+      property: "aspect-ratio",
+      description: "Sets preferred aspect ratio (e.g., `16 / 9`).",
+    },
+    {
+      property: "object-fit",
+      description:
+        "Specifies image/video fit (e.g., `fill`, `contain`, `cover`).",
+    },
+    {
+      property: "object-position",
+      description: "Sets image/video position (e.g., `50% 50%`).",
+    },
+  ]}
+/>

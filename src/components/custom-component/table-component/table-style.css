@@ -1,0 +1,50 @@
+.tableContainer {
+  margin: 1rem 0;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.toggleButton {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #64748b, #90b3a3);
+
+  color: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.toggleButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.table th {
+  background-color: var(--ifm-color-emphasis-100);
+  font-weight: 600;
+  text-align: left;
+}
+
+.table td {
+  vertical-align: top;
+}
+
+.table tr:nth-child(even) {
+  background-color: var(--ifm-color-emphasis-50);
+}
