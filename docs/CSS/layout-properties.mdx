@@ -1,0 +1,69 @@
+---
+id: layout-properties
+title: CSS Layout Properties
+sidebar_position: 3
+description: In depth details about layout properties in CSS
+---
+
+import { FontStyle } from "../../src/components";
+
+<FontStyle text="1. Display:" heading="h2" color="hsl(255deg 85% 30%)" />
+
+- Display is most foundational property in css.
+- Default value of display is **Flow Layout**.
+- Display defines how elements will be rendered in page.
+- Flow layout, sometimes called normal flow, is the default way browsers lay out HTML elements when no special positioning (e.g., position: absolute, float) or layout modes (e.g., Flexbox, Grid) are applied. In Flow layout:
+- Elements are positioned sequentially in the order they appear in the HTML document.
+- The layout respects the box model (margin, padding, border, content) of each element.
+- Elements are arranged based on their display property, which determines whether they behave as:
+
+  - Block-level elements: Take up the full width of their parent container and stack vertically (e.g., div, p, h1 with display: block).
+  - Inline elements: Sit side by side, flowing within a line, and only take up the width of their content (e.g., span, a with display: inline).
+  - Inline-block elements: Flow inline but respect width and height like block elements (e.g., display: inline-block).
+
+- Other value of display are **( none, flex, grid, block, inline)**.
+  - **None** : HTML element is not visible in page, it doesn't take any space in layout.
+
+<FontStyle text="2. Position:" heading="h2" color="hsl(255deg 85% 30%)" />
+
+- Element position is decided by 'position' property in css.
+- Position property defines how element will behaves or positioned on web page, like what happen when page is scrolled.
+- When a web renders html, it prints the element in right to bottom way, means it start printing from left goes to right adn then start again from nest line.
+- Means every element is positioned on webpage and has offset values ( or coordinates x and y ).
+- We can change the position of the element using top, left, right, bottom values.
+- Default value of position is **static**.
+- Position support these values ( static, relative, fixed, absolute, sticky).
+
+  <FontStyle text="1. Static" heading="h4" color="orange" />
+
+        - In static position element is static means once it is printed by web initially, **we can not change the position using top, bottom, right, left**
+        - It behaves with normal ( Flow layout) flow of the page.
+
+  <FontStyle text="2. Relative" heading="h4" color="orange" />
+
+        - In relative position we can move the element by top, bottom, left and right properties.
+
+  <FontStyle text="3. Fixed" heading="h4" color="orange" />
+
+        - It behaved similar like relative, \*\* but the element won't move when page is scrolled, it will remain at same clientX and clientY values.
+        - clientX and clientY are coordinates from the window top/left edge.
+
+  <FontStyle text="3. Absolute" heading="h4" color="orange" />
+
+        - When element is positioned absolute, ** It is free from current flow of web**, means it is no more following standard flow and positioned in web.
+        - It will be positioned respective to it's parent element, If no parent element is there, it window will be it's parent.
+        - It is used to create modal in web, like when user click on button a modal appear, that modal used absolute position to remain near by of the button.
+
+  <FontStyle text="3. Sticky" heading="h4" color="orange" />
+
+        - Sticky is combination of 'relative' and 'fixed', an element positioned as a sticky will behaves like relative, once the condition meet, it works as a sticky.
+        - In below element when potion is not 0, it will behave like relative ( normal ), once user scroll down and element 'top = 0', it start behaving sticky.
+        - It is used for headers.
+
+```css
+.header {
+  position: sticky;
+  top: 0;
+  border: 1px solid rend;
+}
+```
