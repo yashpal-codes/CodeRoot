@@ -94,3 +94,87 @@ import { FontStyle } from "../../src/components";
 - margin: margin set space around the element, after the border.
 
 <FontStyle text="6. Box-Sizing:" heading="h2" color="hsl(255deg 85% 30%)" />
+
+- The `box-sizing` property defines how the width and height of an element are calculated. The default value is **content-box**.
+- **Content-box** means the height and width only include the actual content size — **not** the border or padding.
+- This can cause layout issues when borders and padding are applied because the total size may exceed what you intended.
+- When `box-sizing` is set to **border-box**, the height and width **include** the padding and border.
+- For example, if an element has `width: 150px`, `height: 50px`, `border: 2px`, and `padding: 30px`, the overall size will remain within 50px in height — the content area will shrink to accommodate the padding and border.
+
+```jsx live
+function renderBoxSizingView() {
+  // Main container style
+  const mainCard = {
+    width: "100%",
+    padding: "16px",
+    borderRadius: "20px",
+    background: "linear-gradient(135deg, #f8f9fa, #ffffff)",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+    position: "relative",
+  };
+
+  // Card items wrapper style
+  const cardItems = {
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    alignContent: "center",
+  };
+
+  // List items style
+  const listItems = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    gap: "40px",
+    alignItems: "center",
+    listStyle: "none", // Important to remove default bullets
+    padding: 0, // Remove default padding
+  };
+
+  // Render a card item
+  const RenderCardItem = (boxSizingType) => (
+    <div>
+      <div
+        style={{
+          border: "2px solid blue",
+          borderRadius: "10px",
+          height: "50px",
+          width: "150px",
+          padding: "30px",
+          textTransform: "capitalize",
+          boxSizing: boxSizingType,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {boxSizingType}
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={mainCard}>
+      <div style={cardItems}>
+        <ul style={listItems}>
+          <li>{RenderCardItem("content-box")}</li>
+          <li>{RenderCardItem("border-box")}</li>
+        </ul>
+        <div
+          style={{
+            width: "100%",
+            textAlign: "center",
+            color: "#e74c3c",
+          }}
+        >
+          {" "}
+          Both boxes have the same height, width, and padding. The only difference
+          is that the first box uses content-box for the box-sizing property, while
+          the second uses border-box.
+        </div>
+      </div>
+    </div>
+  );
+}
+```
