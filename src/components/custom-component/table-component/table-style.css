@@ -6,9 +6,13 @@
 }
 
 .toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding: 0.5rem 1rem;
   background: linear-gradient(90deg, #64748b, #90b3a3);
+  transition: all 0.5s ease;
 
   color: white;
   border: none;
@@ -16,7 +20,6 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: background-color 0.2s;
 }
 
 .toggleButton:hover {

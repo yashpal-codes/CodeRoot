@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import "./table-style.css";
+import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const Table = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="tableContainer">
-      <button className="toggleButton" onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className="toggleButton"
+        onClick={() => setIsOpen(!isOpen)}
+        type="button"
+      >
         {isOpen ? "Hide" : "Show"} Properties
+        {isOpen ? <ChevronDown /> : <ChevronRight />}
       </button>
       {isOpen && (
         <table className="table">
