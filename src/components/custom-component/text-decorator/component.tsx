@@ -1,5 +1,6 @@
 import "./custom-component.css";
 import { JSX } from "react";
+import { useColorMode } from "@docusaurus/theme-common";
 
 interface TextHighlighterProps {
   text: string;
@@ -45,7 +46,9 @@ export function DividerWithText({
   );
 }
 
-export function FontStyle({ text, heading, color }: FontStyleProps) {
+export function FontStyle({ text, heading }: FontStyleProps) {
+  const { isDarkTheme } = useColorMode();
+
   const getClassName = (heading: string): string => {
     if (heading) {
       // heading will be like h1, h2 we will add heading to make it like heading1, heading2
@@ -57,10 +60,13 @@ export function FontStyle({ text, heading, color }: FontStyleProps) {
   };
 
   const classNameText = getClassName(heading);
-  console.log(classNameText);
+  // Use CSS variable for the accent color (automatically switches with theme)
+  const themeColor = isDarkTheme
+    ? "var(--color-accent-dark)"
+    : "var(--color-accent-light)";
 
   return (
-    <p className={classNameText} style={{ color }}>
+    <p className={classNameText} style={{ color: themeColor }}>
       {text}
     </p>
   );

@@ -5,19 +5,18 @@ sidebar_position: 1
 
 import { FontStyle } from "../../src/components";
 
-# CSS - Cascading Style Sheet
+## CSS - Cascading Style Sheet
 
 #### HTML forms the structure of a webpage, like a skeleton, while CSS styles it, acting as the visual layer or skin.
 
 <FontStyle
-  text=" CSS is based on selectors, we can apply styles to element using selectors"
+  text="CSS is based on selectors — apply styles to elements using selectors."
   heading="h3"
-  color="blue"
 />
 
 ![selector](assets/selector.png)
 
-### CSS Box Modal
+### CSS Box Model
 
 <img
   src={require("./assets/element.jpg").default}
@@ -27,33 +26,33 @@ import { FontStyle } from "../../src/components";
   style={{ display: "block", margin: "auto" }}
 />
 
-## How To apply CSS to webpage.
+### How to Apply CSS to a Webpage
 
 <details>
-    <summary> 1. Inline CSS </summary>
-    <p> Inline CSS is directly applied to element </p>
+    <summary>1. Inline CSS</summary>
+    <p>Inline CSS is applied directly on the element.</p>
 
     ```html
-    <p style={color:red}> Some Text here </p>
+    <p style="color: red;">Some Text here</p>
     ```
 
 </details>
 
 <details>
-    <summary> 2. Internal CSS </summary>
-    <p> Internal CSS is added into head tag of HTML using style tag </p>
+    <summary>2. Internal CSS</summary>
+    <p>Internal CSS is added inside a `<style>` tag in the document head.</p>
 
     ```html
-    <!DOCTYPE html >
+    <!DOCTYPE html>
     <html>
         <head>
-            <meta name="author" content="Yash">
+            <meta name="author" content="Yash" />
             <style>
-                .p {color=red};
+                .p { color: red; }
             </style>
         </head>
         <body>
-            <p> This is Internal CSS Style </p>
+            <p class="p">This is internal CSS styling.</p>
         </body>
     </html>
     ```
@@ -61,23 +60,23 @@ import { FontStyle } from "../../src/components";
 </details>
 
 <details>
-    <summary> 3. External CSS </summary>
-    <p>External CSS involves linking a separate CSS file to an HTML document, allowing styles to be applied to elements using selectors for consistent and reusable design.</p>
+    <summary>3. External CSS</summary>
+    <p>External CSS links a separate stylesheet for consistent, reusable design.</p>
 
     ```html
-    <!DOCTYPE HTML>
+    <!DOCTYPE html>
     <html>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="stylesheet" href="styles.css" />
         </head>
         <body>
-            <p classname="text-style"> This is external CSS </p>
+            <p class="text-style">This is external CSS</p>
         </body>
     </html>
     ```
 
 </details>
 
-<FontStyle text=" Priority of styles" heading="h3" color="orange" />
+<FontStyle text="Priority of styles" heading="h3" />
 ![Priority](assets/priority.jpg)
