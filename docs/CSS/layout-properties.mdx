@@ -7,7 +7,7 @@ description: In depth details about layout properties in CSS
 
 import { FontStyle } from "../../src/components";
 
-<FontStyle text="1. Display:" heading="h2" color="hsl(255deg 85% 30%)" />
+<FontStyle text="1. Display:" heading="h2" />
 
 - Display is most foundational property in css.
 - Default value of display is **Flow Layout**.
@@ -24,7 +24,7 @@ import { FontStyle } from "../../src/components";
 - Other value of display are **( none, flex, grid, block, inline)**.
   - **None** : HTML element is not visible in page, it doesn't take any space in layout.
 
-<FontStyle text="2. Position:" heading="h2" color="hsl(255deg 85% 30%)" />
+<FontStyle text="2. Position:" heading="h2" />
 
 - Element position is decided by 'position' property in css.
 - Position property defines how element will behaves or positioned on web page, like what happen when page is scrolled.
@@ -34,27 +34,27 @@ import { FontStyle } from "../../src/components";
 - Default value of position is **static**.
 - Position support these values ( static, relative, fixed, absolute, sticky).
 
-  <FontStyle text="1. Static" heading="h4" color="orange" />
+  <FontStyle text="1. Static" heading="h4" />
 
         - In static position element is static means once it is printed by web initially, **we can not change the position using top, bottom, right, left**
         - It behaves with normal ( Flow layout) flow of the page.
 
-  <FontStyle text="2. Relative" heading="h4" color="orange" />
+  <FontStyle text="2. Relative" heading="h4" />
 
         - In relative position we can move the element by top, bottom, left and right properties.
 
-  <FontStyle text="3. Fixed" heading="h4" color="orange" />
+  <FontStyle text="3. Fixed" heading="h4" />
 
         - It behaved similar like relative, \*\* but the element won't move when page is scrolled, it will remain at same clientX and clientY values.
         - clientX and clientY are coordinates from the window top/left edge.
 
-  <FontStyle text="3. Absolute" heading="h4" color="orange" />
+  <FontStyle text="3. Absolute" heading="h4" />
 
         - When element is positioned absolute, ** It is free from current flow of web**, means it is no more following standard flow and positioned in web.
         - It will be positioned respective to it's parent element, If no parent element is there, it window will be it's parent.
         - It is used to create modal in web, like when user click on button a modal appear, that modal used absolute position to remain near by of the button.
 
-  <FontStyle text="3. Sticky" heading="h4" color="orange" />
+  <FontStyle text="3. Sticky" heading="h4" />
 
         - Sticky is combination of 'relative' and 'fixed', an element positioned as a sticky will behaves like relative, once the condition meet, it works as a sticky.
         - In below element when potion is not 0, it will behave like relative ( normal ), once user scroll down and element 'top = 0', it start behaving sticky.
@@ -68,23 +68,19 @@ import { FontStyle } from "../../src/components";
 }
 ```
 
-<FontStyle text="3. Offset Related:" heading="h2" color="hsl(255deg 85% 30%)" />
+<FontStyle text="3. Offset Related:" heading="h2" />
 
 - top, left, right, top,
 - All this property are used to set position of element.
 - This all only work when position is not set to static.
 
-<FontStyle text="4. Z-index:" heading="h2" color="hsl(255deg 85% 30%)" />
+<FontStyle text="4. Z-index:" heading="h2" />
 
 - Z-index is used to define priority of element in stack.
 - If there are multiple element stacked, than element with higher z-index will be on the top of stack.
 - Consider we have a sidebar and there is button in sidebar which open quantity modal, if modal z-index is higher then it will be visible on the top of the sidebar.
 
-<FontStyle
-  text="5. Element Dimension:"
-  heading="h2"
-  color="hsl(255deg 85% 30%)"
-/>
+<FontStyle text="5. Element Dimension:" heading="h2" />
 
 - In css to set element dimension, we've many properties, few of them are as below.
 - width: To set width of element.
@@ -93,7 +89,7 @@ import { FontStyle } from "../../src/components";
 - padding: padding sets space around by element, between border and element.
 - margin: margin set space around the element, after the border.
 
-<FontStyle text="6. Box-Sizing:" heading="h2" color="hsl(255deg 85% 30%)" />
+<FontStyle text="6. Box-Sizing:" heading="h2" />
 
 - The `box-sizing` property defines how the width and height of an element are calculated. The default value is **content-box**.
 - **Content-box** means the height and width only include the actual content size — **not** the border or padding.
