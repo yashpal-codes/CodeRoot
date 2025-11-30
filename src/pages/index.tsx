@@ -26,7 +26,7 @@ const TOPICS = [
     description:
       "Discover type safety and advanced TypeScript concepts for scalable code.",
     Icon: FileCode,
-    path: "/docs/typeScript/introduction",
+    path: "/docs/typescript/introduction",
   },
   {
     title: "React",
