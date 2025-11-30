@@ -5,4 +5,198 @@ sidebar_position: 4
 description: All about Flexbox and it's magic
 ---
 
-import { FontStyle } from "../../src/components";
+### Flexbox is CSS display property
+
+- Flexbox is directional base layout, which has two axis/direction
+
+  - Main axis
+  - Cross axis
+
+- In CSS we define them by flex direction,
+  - If flex-direction is row, than Main axis will be horizontal and cross axis will be vertical
+  - If flex-direction is column, than Main axis will be vertical and cross axis will be horizontal.
+
+<img
+  alt="flexbox"
+  src={require("./assets/flexbox.png").default}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+<br />
+
+- Flex is container based, there is parent container and flex-items are child.
+- Both FlexBox Container and Flex Items have properties.
+
+### Flexbox Container Properties
+
+#### 1. **`display:flex`**
+
+#### 2. **`flex-direction`** : Define flex Main and Cross Axis
+
+    - row
+    - column
+    - row-reverse
+    - column-reverse
+
+#### 3. **`flex-wrap`** : Define if flex items will wrap or not
+
+    - wrap : when no enough space available, last items will be moved to next row/line.
+    - Consider this you are writing in a line into text book, while writing you reach at the end of line, you will start writing to next line below current one.
+    - Similar way in wrap, when wrap is enabled, and there is no enough space, last few items will move to next row.
+    - no-wrap : items does not float. This is default.
+    - wrap-reverse : reverse the wrap.
+
+<img
+  alt="flexbox"
+  src={require("./assets/flex-wrap.png").default}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+#### 4. **`flex-flow`** : Shorthand property for flex direction and wrap
+
+    - column wrap
+    - row no-wrapper
+
+#### 5. **`justify-content`** : Most of properties start with 'justify' are aligned with Main axis
+
+    - This property moved flex items on Main axis, if Main axis is horizontal, items will be moved horizontally,
+    - If Main axis is vertical, items will be moved vertically.
+    - flex-start
+    - center
+    - flex-end
+    - space-between
+
+<img
+  alt="flexbox"
+  src={require("./assets/flex-justify.png").default}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+<br />
+
+#### 6. **`align-items`** : Properties start with 'align' are aligned with Cross Axis
+
+    - This property moved flex items on Cross axis, eg: for flex row, cross axis will be vertically, so items will be moved on vertical line.
+    - Align Items only works if heigh is fixed or defined.
+    - flex-start
+    - center: this align whole items to the center of container
+    - flex-end
+    - stretch
+    - baseline : this align text items to the center.
+
+<img
+  alt="flexbox"
+  src={require("./assets/flex-align-items.png").default}
+  style={{ margin: "auto", display: "block" }}
+/>
+
+<br />
+
+#### 7. **`align-contents`** :
+
+    - With align-items, the items align relative to their own row, not the whole container.
+      So if there is only one row, it looks centered in the container.
+      But if there are multiple rows, each row aligns individually, not as one group.
+    - With align-content, the entire group of rows is aligned inside the container (centered, spaced, stretched, etc.), not just individual items.
+    -  Unlike `align-items`, which aligns **items inside each row**, `align-content` aligns the **rows themselves**.
+    - If align the flex-container lines.
+    - It only works with Multi line flex container with ref to Cross Axis.
+    - Only works with flex-wrap and wrap-reverse.
+    - [**See this CodePen example**](https://codepen.io/Yashpal-Singh-Rathod/pen/pvyKWdP)
+
+#### 8. **`gap`** : Gap define space between items
+
+    - The gap property explicitly controls the space between flex items
+
+    ``` css
+      .container {
+        display: flex;
+        ...
+        gap: 10px; /* both row-gap and column-gap are 10 */
+        gap: 10px 20px; /* row-gap column gap */
+        row-gap: 10px;
+        column-gap: 20px;
+      }
+
+    ```
+
+### Flex Items Properties
+
+#### 1. **`align-self`** :
+
+    - Align self make an items to be placed on cross axis,
+    - It supports, center, flex start, flex-end, baseline.
+    - ** There is no Justify Self** as that is not possible technically,
+    - In justify, items are moved across main axis, but they are in one line, so single items can not be moved individually.
+    - Think like you are stuck in a traffic, there are cars in front and back side of you, so you can not individually move in that line.
+    - While In cross axis, it is like three people climbing mountain suing rope, so any individual can move to top, center or bottom of mountain.
+
+#### 2. **`flex-grow`** :
+
+    - Given flex item will grow **Number** times bigger than other items in container when space available.
+    - Default is 0.
+
+#### 3. **`flex-shrink`** :
+
+    - Same as flex-grow but shrink by given number.
+    - default is 1.
+
+#### 4. **`flex-basis`** :
+
+    - Defies initial length for flex-items
+    - This defines the default size of an element before the remaining space is distributed
+    - Default is **auto**
+    - In auto extra space is distributes to new items.
+    - flex-basis: 0px, means it take only space for context require and all other space is distributed.
+    - In a Flex row, flex-basis does the same thing as width. In a Flex column, flex-basis does the same thing as height.
+
+#### 5. **`flex`** :
+
+    - This is shorthand for **flex-grow,flex-shrink,flex-basis**.
+    - flex:0,0,0.5 means, grow is default, shrink is set to 0 and flex basis is 0.5.
+    - [**Detailed Guide on Flex here **](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/)
+
+#### 6. **`order`** :
+
+    - By default teh flex items are laid out in the source order, but with help of **order** we can change the order.
+
+### Flex values:
+
+- `flex: 0 1 auto`
+
+  - `flex-grow: 0` → Item **will not grow** even if there is free space.
+  - `flex-shrink: 1` → Item **can shrink** when there isn’t enough space.
+  - `flex-basis: auto` → Width is based on the item’s content.
+  - The item is **shrinkable but not expandable**.
+
+---
+
+- `flex: 1 1 auto`
+
+  - `flex-grow: 1` → Item can **grow** if there is extra space.
+  - `flex-shrink: 1` → Item can **shrink** if needed.
+  - `flex-basis: auto`.
+  - Fully flexible: items grow and shrink based on available space and distribute leftover space **equally**.
+
+---
+
+- `flex: 0 0 auto`
+
+  - `flex-grow: 0`
+  - `flex-shrink: 0`
+  - `flex-basis: auto`
+  - The item remains **exactly its content size** — fully inflexible.
+
+---
+
+- `flex-basis: 0` vs `flex-basis: auto`
+
+  - `flex-basis: 0`
+  - Items start as width **0**
+  - All available space is distributed according to `flex-grow` values
+
+- `flex-basis: auto`
+
+  - Items first take **their natural content width**
+  - Only **remaining free space** is distributed based on `flex-grow`
+  - Better when items have different content sizes.

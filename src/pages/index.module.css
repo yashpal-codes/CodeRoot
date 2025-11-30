@@ -10,9 +10,66 @@
   overflow: hidden;
 }
 
+.profileButton {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.profileButton a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profileButton a:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profileButton a:active {
+  transform: scale(0.95);
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
+  }
+
+  .profileButton {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .profileButton a {
+    width: 45px;
+    height: 45px;
+  }
+
+  .profileButton a svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -99,4 +156,13 @@ html[data-theme="dark"] .topicIcon svg {
 
 html[data-theme="dark"] .topicCard p {
   color: #b0b0b0;
+}
+
+.topicCard a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.topicCard a:hover {
+  text-decoration: none;
 }
