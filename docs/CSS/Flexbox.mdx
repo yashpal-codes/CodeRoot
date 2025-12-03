@@ -135,6 +135,337 @@ description: All about Flexbox and it's magic
 
     - Given flex item will grow **Number** times bigger than other items in container when space available.
     - Default is 0.
+    - The question is what is mean by **grow** here ?
+      - Does item will grow in both height and width ?
+      - No, in flexbox everything is related to axis, so grow/shrink also happen in relation with axis.
+      - For flex:row, when grow is applied item **width** will increase,
+      - For flex:column, when grow is applied item **height** will increase.
+      - Same applied to shrink, so grow and shrink applies to Main axis.
+
+### Interactive Flex Grow & Shrink Demo
+
+```jsx live
+function FlexGrowShrinkDemo() {
+  const [flexDirection, setFlexDirection] = useState("row");
+  const [growValues, setGrowValues] = useState([1, 0, 0]);
+  const [shrinkValues, setShrinkValues] = useState([1, 1, 1]);
+  const [containerSize, setContainerSize] = useState(100);
+
+  const colors = ["#FF6B6B", "#4ECDC4", "#45B7D1"];
+  const labels = ["Item 1 :", "Item 2 :", "Item 3 :"];
+  const sizeOptions = [20, 40, 60, 80, 100];
+
+  const sizeLabel = flexDirection === "row" ? "Width" : "Height";
+  const [flexBasisValues, setFlexBasisValues] = useState([
+    "auto",
+    "auto",
+    "auto",
+  ]);
+  const basisOptions = [
+    "Basis: auto",
+    "Basis: 0px",
+    "Basis: 50px",
+    "Basis: 100px",
+    "Basis: 200px",
+  ];
+  const toggleGrow = (index) => {
+    const newGrowValues = [...growValues];
+    newGrowValues[index] = newGrowValues[index] === 0 ? 1 : 0;
+    setGrowValues(newGrowValues);
+  };
+
+  const toggleShrink = (index) => {
+    const newShrinkValues = [...shrinkValues];
+    newShrinkValues[index] = newShrinkValues[index] === 0 ? 1 : 0;
+    setShrinkValues(newShrinkValues);
+  };
+
+  const getAxisLabel = () => {
+    if (flexDirection === "row") {
+      return { main: "Main Axis →", cross: "Cross Axis ↓" };
+    } else {
+      return { main: "Main Axis ↓", cross: "Cross Axis →" };
+    }
+  };
+
+  const axisLabels = getAxisLabel();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        padding: "20px",
+        background: "#1a1a1a",
+        borderRadius: "12px",
+        color: "#fff",
+      }}
+    >
+      {/* Header */}
+      <div style={{ textAlign: "center" }}>
+        <p style={{ margin: "0", fontSize: "16px", color: "#e7dbdbff" }}>
+          Toggle grow/shrink for each item and change flex direction
+        </p>
+      </div>
+
+      {/* Controls */}
+      <div
+        style={{
+          display: "flex",
+          gap: "12px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          alignItems: "center",
+        }}
+      >
+        <select
+          value={flexDirection}
+          onChange={(e) => setFlexDirection(e.target.value)}
+          style={{
+            padding: "8px 12px",
+            background: "#2e3f49ff",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "13px",
+            fontWeight: "600",
+          }}
+        >
+          <option value="row">Direction: Row →</option>
+          <option value="column">Direction: Column ↓</option>
+        </select>
+
+        <select
+          value={containerSize}
+          onChange={(e) => setContainerSize(parseInt(e.target.value))}
+          style={{
+            padding: "8px 12px",
+            background: "#2e3f49ff",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "13px",
+            fontWeight: "600",
+          }}
+        >
+          {sizeOptions.map((size) => (
+            <option key={size} value={size}>
+              {sizeLabel}: {size}%
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Axis Labels */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "15px",
+          algnItems: "center",
+          textAlign: "center",
+          fontSize: "14px",
+          color: "#8dd7eeff",
+          fontWeight: "600",
+        }}
+      >
+        <div>{axisLabels.main}</div>
+        <div>{axisLabels.cross}</div>
+      </div>
+
+      {/* Flex Container (wrapped inside fixed-height demo area) */}
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "900px",
+          height:
+            flexDirection === "column"
+              ? "360px"
+              : "auto" /* fixed demo height only for column mode */,
+          margin: "0 auto",
+          display: "flex",
+          alignItems: flexDirection === "column" ? "center" : "stretch",
+          justifyContent: "center",
+          background: "transparent",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: flexDirection,
+            /* when in row mode use percent width, when column mode use percent height of this fixed wrapper */
+            width: flexDirection === "row" ? `${containerSize}%` : "100%",
+            /* static row height so demo container isn't too small */
+            height: flexDirection === "column" ? `${containerSize}%` : "120px",
+            background: "#000",
+            border: "3px solid #555",
+            borderRadius: "8px",
+            padding: "12px",
+            gap: "8px",
+            boxSizing: "border-box",
+            overflow: "auto",
+            transition: "all 0.3s ease",
+            alignItems: "stretch",
+          }}
+        >
+          {labels.map((label, index) => (
+            <div
+              key={index}
+              style={{
+                flex: `${growValues[index]} ${shrinkValues[index]} ${flexBasisValues[index]}`,
+                background: colors[index],
+                borderRadius: "6px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "12px",
+                fontWeight: "600",
+                color: "#000",
+                minWidth: "40px",
+                minHeight: "40px",
+                transition: "flex 0.3s ease",
+                textAlign: "center",
+                padding: "8px",
+              }}
+            >
+              {label}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Item Controls (label + two narrow buttons in one row) */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          width: "100%",
+          maxWidth: "700px",
+          margin: "0 auto",
+        }}
+      >
+        {labels.map((label, index) => (
+          <div
+            key={index}
+            style={{
+              background: "#222",
+              padding: "10px 12px",
+              borderRadius: "8px",
+              border: "2px solid #635f5fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: "40px",
+            }}
+          >
+            <div style={{ fontSize: "16px", fontWeight: "600", color: "#fff" }}>
+              {label}
+            </div>
+
+            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+              <button
+                onClick={() => toggleGrow(index)}
+                style={{
+                  width: "100px",
+                  padding: "6px 8px",
+                  background: growValues[index] === 1 ? "#4CAF50" : "#666",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  transition: "background 0.15s",
+                  textAlign: "center",
+                }}
+              >
+                Grow: {growValues[index]}
+              </button>
+
+              <button
+                onClick={() => toggleShrink(index)}
+                style={{
+                  width: "100px",
+                  padding: "6px 8px",
+                  background: shrinkValues[index] === 1 ? "#4CAF50" : "#666",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  transition: "background 0.15s",
+                  textAlign: "center",
+                }}
+              >
+                Shrink: {shrinkValues[index]}
+              </button>
+              <select
+                value={flexBasisValues[index]}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  const next = [...flexBasisValues];
+                  next[index] = v;
+                  setFlexBasisValues(next);
+                }}
+                style={{
+                  width: "110px",
+                  padding: "6px 8px",
+                  background: "#333",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: "600",
+                }}
+              >
+                {basisOptions.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Info Box */}
+      <div
+        style={{
+          background: "#222",
+          padding: "12px",
+          borderRadius: "8px",
+          fontSize: "14px",
+          lineHeight: "1.6",
+          color: "#ddd",
+        }}
+      >
+        <div
+          style={{ fontWeight: "600", marginBottom: "10px", color: "#4ECDC4" }}
+        >
+          How it works:
+        </div>
+        <ul style={{ margin: "0", paddingLeft: "20px" }}>
+          <li>
+            <strong>Grow</strong>: Item expands to fill available space on the
+            main axis
+          </li>
+          <li>
+            <strong>Shrink</strong>: Item can shrink when space is limited
+          </li>
+          <li>Try reducing container width to see shrink in action</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
 
 #### 3. **`flex-shrink`** :
 
