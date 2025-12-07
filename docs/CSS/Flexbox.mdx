@@ -420,7 +420,7 @@ function FlexGrowShrinkDemo() {
                 onChange={(e) => {
                   const v = e.target.value;
                   const next = [...flexBasisValues];
-                  next[index] = v;
+                  next[index] = v.slice(6);
                   setFlexBasisValues(next);
                 }}
                 style={{
