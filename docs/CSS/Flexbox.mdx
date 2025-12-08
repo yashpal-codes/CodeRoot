@@ -157,9 +157,9 @@ function FlexGrowShrinkDemo() {
 
   const sizeLabel = flexDirection === "row" ? "Width" : "Height";
   const [flexBasisValues, setFlexBasisValues] = useState([
-    "auto",
-    "auto",
-    "auto",
+    "Basis: auto",
+    "Basis: auto",
+    "Basis: auto",
   ]);
   const basisOptions = [
     "Basis: auto",
@@ -315,7 +315,9 @@ function FlexGrowShrinkDemo() {
             <div
               key={index}
               style={{
-                flex: `${growValues[index]} ${shrinkValues[index]} ${flexBasisValues[index]}`,
+                flex: `${growValues[index]} ${
+                  shrinkValues[index]
+                } ${flexBasisValues[index].slice(6)}`,
                 background: colors[index],
                 borderRadius: "6px",
                 display: "flex",
@@ -420,7 +422,7 @@ function FlexGrowShrinkDemo() {
                 onChange={(e) => {
                   const v = e.target.value;
                   const next = [...flexBasisValues];
-                  next[index] = v.slice(6);
+                  next[index] = v;
                   setFlexBasisValues(next);
                 }}
                 style={{
