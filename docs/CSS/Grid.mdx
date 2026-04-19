@@ -24,3 +24,87 @@ description: All about Grid and it's magic
   src={require("./assets/grid-2.png").default}
   style={{ margin: "auto" }}
 />
+
+### Grid Container Properties:
+
+#### 1. **`display:grid`**
+
+#### 2. **`column-gap`** : Gap between two column in grid.
+
+#### 3. **`row-gap`** : Gap between two row.
+
+#### 4. **`gap`** : Shorthand for both row and column gap.
+
+- gap : row-gp, column gap
+
+#### 5. **`grid-template-rows`** : Specify the size and count of rows.
+
+- grid-template-rows: 20px, 40px, 60px.
+- this makes three rows with given size.
+
+#### 6. **`grid-template-columns`** : Specify the size and count of columns.
+
+- grid-template-columns: [col-start]20px, [second-line]1fr
+- This makes two columns one at start with 20px.
+
+#### 7. **`grid-template-areas`** : grid-template-area defines how to display grid-area.
+
+- Named grid-items are called grid-area
+- We need to define grid-area and that are put together in grid-template-areas.
+- Into this items inside single quotation or double quotation are put in one row.
+- Items which are separated by space are shown in column view.
+- Dot notation specify empty grid cell.
+- We can define layout visually using names instead of numbers
+
+```html
+<div class="container">
+  <header class="header">Header</header>
+  <aside class="sidebar">Sidebar</aside>
+  <main class="main">Main Content</main>
+  <footer class="footer">Footer</footer>
+</div>
+```
+
+```css
+.container {
+  display: grid;
+  grid-template-column: 200px, 300px;
+  grid-template-rows: auto;
+
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+
+  gap: 10px;
+  height: 100vh;
+
+  .header {
+    grid-area: header;
+    background: lightblue;
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    background: lightgreen;
+  }
+
+  .main {
+    grid-area: main;
+    background: lightcoral;
+  }
+
+  .footer {
+    grid-area: footer;
+    background: lightgray;
+  }
+}
+```
+
+<img
+  alt="Grid-3"
+  src={require("./assets/grid-3.png").default}
+  style={{ margin: "auto" }}
+/>
+
+#### 8. **`justify-items`** :
